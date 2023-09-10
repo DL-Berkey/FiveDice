@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <Wrapper>
             <Logo>
-                <a href="#">Five Dice Game</a>
+                <a href="#">Five Dice</a>
             </Logo>
             <Account>
                 <button>

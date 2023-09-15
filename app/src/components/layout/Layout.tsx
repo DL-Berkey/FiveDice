@@ -17,7 +17,12 @@ const Layout = () => {
 };
 
 const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+
     padding: 0 6%;
+
+    height: 100vh;
 `;
 
 export default Layout;

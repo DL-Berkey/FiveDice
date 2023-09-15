@@ -8,6 +8,13 @@ const GlobalStyle = createGlobalStyle`
         --blue: #176B87;
         --teal: #64CCC5;
         --gray: #EEEEEE;
+
+        --win: #82A0D8;
+        --defeat: #EF9595;
+        --draw: gray;
+
+        --shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+        rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     }
 
     * {
@@ -32,6 +39,9 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
+    ul, ol {
+        list-style: none;
+    }
 `;
 
 export default GlobalStyle;

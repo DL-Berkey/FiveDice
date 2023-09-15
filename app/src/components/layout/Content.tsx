@@ -1,11 +1,22 @@
 import styled from "styled-components";
+import GameInfo from "../GameInfo";
+import UserInfo from "../UserInfo";
 
 const Content = () => {
-    return <Wrapper>이건 컨텐트!</Wrapper>;
+    return (
+        <Wrapper>
+            <GameInfo />
+            <UserInfo />
+        </Wrapper>
+    );
 };
 
 const Wrapper = styled.main`
-    /* background: var(--blue); */
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    gap: 3%;
 `;
 
 export default Content;

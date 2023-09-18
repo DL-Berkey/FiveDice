@@ -21,14 +21,15 @@ const Wrapper = styled.header`
     justify-content: space-between;
 
     height: 8vh;
-    font-size: 2rem;
+    font-size: 2.5rem;
 
     padding: 0 10px;
-    margin-bottom: 2vh;
+    margin-bottom: 3vh;
 
     line-height: 8vh;
     font-weight: 700;
 
+    background: white;
     box-shadow: var(--shadow);
 `;
 

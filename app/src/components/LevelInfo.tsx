@@ -19,7 +19,6 @@ const Wrapper = styled.div`
     align-items: center;
 
     width: 100%;
-    /* height: fit-content; */
     height: 10%;
 `;
 
@@ -65,7 +64,7 @@ const ExperienceBar = styled.div<{ value: string }>`
 
         background: var(--teal);
 
-        z-index: -1;
+        z-index: 1;
     }
 `;
 

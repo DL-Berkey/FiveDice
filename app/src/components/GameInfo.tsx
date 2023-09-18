@@ -25,8 +25,10 @@ const Wrapper = styled.section`
     width: 74%;
     height: 95%;
 
-    /* background: var(--blue); */
-    /* background: gray; */
+    background: white;
+
+    border-radius: 15px;
+    box-shadow: var(--shadow);
 `;
 
 export default GameInfo;

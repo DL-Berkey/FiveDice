@@ -111,6 +111,7 @@ const RecordContainer = styled.ul`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 18px;
 
     height: 92%;
 `;
@@ -145,10 +146,6 @@ const RecordItem = styled.li<{ value: "win" | "defeat" | "draw" }>`
                 return "var(--draw)";
         }
     }};
-
-    & + & {
-        margin-top: 18px;
-    }
 `;
 
 const Mode = styled.div`
@@ -198,6 +195,8 @@ const RecordPagination = styled.div`
     gap: 5%;
 
     height: 4%;
+
+    align-items: baseline;
 
     & :first-child,
     :last-child {

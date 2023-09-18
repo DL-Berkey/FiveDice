@@ -22,6 +22,8 @@ const Wrapper = styled.section`
 
     padding: 1% 2%;
 
+    background: white;
+
     border-radius: 15px;
     box-shadow: var(--shadow);
 `;

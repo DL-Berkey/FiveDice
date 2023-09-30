@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import GameInfo from "../GameInfo";
-import UserInfo from "../UserInfo";
+import GameInfo from "../GameInfo/GameInfo";
+import UserInfo from "../UserInfo/UserInfo";
 
 const Content = () => {
     return (

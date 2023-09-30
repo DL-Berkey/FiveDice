@@ -5,7 +5,8 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Poppins', sans-serif;
 
         --navy: #053B50;
-        --blue: #176B87;
+        /* --blue: #176B87; */
+        --blue: #82A0D8;
         --teal: #64CCC5;
         --gray: #EEEEEE;
 

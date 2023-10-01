@@ -19,3 +19,4 @@ Side Menu 컴포넌트 css 작업
 
 -   border radius 를 css 변수로 공통화
 -   css 변수에 color (background / text) 이름을 Main, Sub 등과 같은 형식으로 변경
+-   Menu에 React Router Dom 적용

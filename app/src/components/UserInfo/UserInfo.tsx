@@ -14,10 +14,11 @@ const UserInfo = () => {
 };
 
 const Wrapper = styled.section`
+    flex: 2;
+
     display: flex;
     flex-direction: column;
 
-    width: 20%;
     height: 95%;
 
     padding: 1% 2%;

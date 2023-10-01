@@ -39,11 +39,12 @@ const UpperButton = css`
 `;
 
 const Wrapper = styled.section`
+    flex: 7;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    width: 74%;
     height: 95%;
 
     padding: 2%;

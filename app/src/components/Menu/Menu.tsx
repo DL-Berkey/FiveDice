@@ -1,17 +1,10 @@
 import styled from "styled-components";
 import {
-    AiFillNotification,
-    AiFillBook,
-    AiFillRobot,
-    AiFillCrown,
-} from "react-icons/ai";
-import {
     BsMegaphone,
     BsDice5,
     BsBook,
     BsDice1,
-    BsAward,
-    BsFillTrophyFill,
+    BsTrophy,
 } from "react-icons/bs";
 
 const Menu = () => {
@@ -23,7 +16,7 @@ const Menu = () => {
                     <span>Notice</span>
                 </MenuItem>
                 <MenuItem>
-                    <BsAward />
+                    <BsTrophy />
                     <span>Ranking</span>
                 </MenuItem>
                 <MenuItem active="true">

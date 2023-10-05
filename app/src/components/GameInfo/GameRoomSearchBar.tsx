@@ -5,12 +5,12 @@ const GameRoomSearchBar = () => {
     return (
         <Wrapper>
             <input placeholder="Searching by room number" />
-            <button className="delete_button" type="reset">
+            <FormButton className="delete_button" type="reset">
                 <BsXLg />
-            </button>
-            <button className="search_button">
+            </FormButton>
+            <FormButton>
                 <BsSearch />
-            </button>
+            </FormButton>
         </Wrapper>
     );
 };
@@ -33,7 +33,7 @@ const Wrapper = styled.form`
         height: 100%;
 
         padding-left: 2%;
-        padding-right: 12%;
+        padding-right: 8%;
 
         font-size: 1.5rem;
 
@@ -43,25 +43,25 @@ const Wrapper = styled.form`
             outline: none;
         }
     }
+`;
 
-    & button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+const FormButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        width: 8%;
-        height: 100%;
+    width: 8%;
+    height: 100%;
 
-        font-size: 1.8rem;
+    font-size: 1.8rem;
 
-        background: var(--blue);
+    background: var(--blue);
 
-        & svg {
-            fill: white;
-        }
+    & svg {
+        fill: white;
     }
 
-    & .delete_button {
+    &.delete_button {
         position: absolute;
         top: 0;
         right: 8%;

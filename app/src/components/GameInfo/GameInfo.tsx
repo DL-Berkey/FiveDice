@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import GameRoom from "./GameRoom";
 import GameRoomSearchBar from "./GameRoomSearchBar";
+import GameModeSelectBar from "./GameModeSelectBar";
 
 const GameInfo = () => {
     return (
@@ -10,11 +11,7 @@ const GameInfo = () => {
             <GameRoomContainer>
                 <GameRoomList>{Array(18).fill(<GameRoom />)}</GameRoomList>
             </GameRoomContainer>
-            <GameModeContainer>
-                <GameModeButton>Rank</GameModeButton>
-                <GameModeButton>Normal</GameModeButton>
-                <GameModeButton>Unlimited</GameModeButton>
-            </GameModeContainer>
+            <GameModeSelectBar />
         </Wrapper>
     );
 };
@@ -54,42 +51,6 @@ const GameRoomList = styled.ul`
     height: 100%;
 
     overflow-y: scroll;
-`;
-
-const GameModeContainer = styled.div`
-    width: 40%;
-    height: 6%;
-
-    border-radius: 10px;
-    background: var(--blue);
-`;
-
-const GameModeButton = styled.button`
-    position: relative;
-
-    width: calc(100% / 3);
-    height: 100%;
-
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: white;
-
-    background: transparent;
-
-    & + & {
-        &::before {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-
-            width: 3px;
-            height: 70%;
-
-            background: white;
-        }
-    }
 `;
 
 export default GameInfo;

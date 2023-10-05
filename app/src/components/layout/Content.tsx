@@ -22,6 +22,8 @@ const Wrapper = styled.main`
     gap: 2%;
 
     padding: 0 2%;
+
+    height: 80vh;
 `;
 
 export default Content;

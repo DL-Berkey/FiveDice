@@ -17,12 +17,10 @@ const Layout = () => {
 };
 
 const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+    width: 1920px;
+    height: 929px;
 
     padding: 0 6%;
-
-    height: 100vh;
 `;
 
 export default Layout;

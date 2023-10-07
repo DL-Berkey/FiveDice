@@ -12,17 +12,13 @@ const ScoreList = () => {
 
 const Wrapper = styled.ul`
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 
-    height: 3%;
-
-    margin-bottom: 15%;
+    height: fit-content;
 `;
 
 const ScoreItem = styled.li`
     flex: 1;
-
-    height: 100%;
 
     font-size: 1rem;
     text-align: center;

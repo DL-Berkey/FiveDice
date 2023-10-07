@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import GameRoom from "./GameRoom";
 import GameRoomSearchBar from "./GameRoomSearchBar";
-import GameModeSelectBar from "./GameModeSelectBar";
+import GameModeSelectBar from "./GameModeSeleter/GameModeSelectBar";
 
 const GameInfo = () => {
     return (
@@ -24,8 +24,6 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
 
-    height: 95%;
-
     padding: 2%;
 
     background: white;
@@ -34,21 +32,24 @@ const Wrapper = styled.section`
 `;
 
 const GameRoomContainer = styled.div`
-    max-height: 82%;
+    width: 82%;
+    height: 82%;
 `;
 
 const GameRoomList = styled.ul`
     // 게임룸 먼저만들고 카드로 할지,뭘로할지 정하기
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 18%;
     grid-auto-flow: row;
-    row-gap: 3%;
-    column-gap: 2%;
+    row-gap: 8%;
+    column-gap: 6%;
 
     width: 100%;
     height: 100%;
+
+    padding: 0 2%;
 
     overflow-y: scroll;
 `;

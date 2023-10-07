@@ -76,8 +76,9 @@ const Wrapper = styled.div`
 
     display: flex;
     flex-direction: column;
+    /* justify-content: space-between; */
 
-    height: 87%;
+    /* height: 77%; */
 `;
 
 const RecordTitle = styled.div`
@@ -108,12 +109,14 @@ const RecordTitle = styled.div`
 `;
 
 const RecordContainer = styled.ul`
+    flex: 1;
+
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 18px;
 
-    height: 92%;
+    margin-bottom: 8%;
 `;
 
 const RecordItem = styled.li<{ value: "win" | "defeat" | "draw" }>`

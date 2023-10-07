@@ -15,15 +15,12 @@ const Content = () => {
 };
 
 const Wrapper = styled.main`
-    flex-grow: 1;
-
     display: flex;
-    justify-content: center;
     gap: 2%;
 
-    padding: 0 2%;
+    height: 92%;
 
-    height: 80vh;
+    padding: 0 2% 4% 2%;
 `;
 
 export default Content;

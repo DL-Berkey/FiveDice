@@ -19,14 +19,13 @@ const Header = () => {
 const Wrapper = styled.header`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
-    height: 8vh;
-    font-size: 2.5rem;
+    height: 6%;
+    font-size: 2rem;
 
-    padding: 0 10px;
-    margin-bottom: 3vh;
-
-    line-height: 8vh;
+    padding: 0 2%;
+    margin-bottom: 2%;
     font-weight: 700;
 
     background: white;
@@ -40,15 +39,8 @@ const Logo = styled.div`
 const Account = styled.div`
     flex: 1;
 
-    position: relative;
-
     & > button {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-
-        padding-left: 15px;
+        float: right;
 
         font-size: inherit;
     }

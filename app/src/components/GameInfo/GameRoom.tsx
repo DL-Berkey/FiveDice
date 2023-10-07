@@ -21,17 +21,14 @@ const Wrapper = styled.li`
         "room_num . join"
         "title title join"
         "mode players join";
-    grid-template-columns: 5fr 1fr 1fr;
+    grid-template-columns: 5fr 1fr 0.4fr;
     grid-template-rows: 2fr 5fr 2fr;
     align-items: center;
-
-    /* width: 33%; */
-    /* height: 20%; */
 
     padding-left: 2%;
 
     border: 2px solid var(--blue);
-    border-radius: 20px;
+    border-radius: 10px;
 
     overflow: hidden;
 `;
@@ -48,8 +45,6 @@ const Title = styled.div`
 
     width: 100%;
     height: fit-content;
-
-    /* margin-left: 3%; */
 
     font-size: 1.6rem;
     overflow: hidden;

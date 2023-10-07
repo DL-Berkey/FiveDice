@@ -54,15 +54,16 @@ const MenuContainer = styled.ul`
     padding: 8% 4%;
 
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
 `;
 
 const MenuItem = styled.li<{ active?: "true" }>`
     display: flex;
     justify-content: left;
     align-items: center;
+    gap: 18%;
 
-    padding-left: 8%;
+    padding: 0 8%;
 
     &[active="true"] {
         background: var(--blue);
@@ -75,10 +76,6 @@ const MenuItem = styled.li<{ active?: "true" }>`
         & span {
             color: white;
         }
-    }
-
-    & span {
-        margin-left: 10%;
     }
 `;
 

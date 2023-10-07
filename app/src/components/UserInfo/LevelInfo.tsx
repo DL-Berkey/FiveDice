@@ -15,25 +15,13 @@ const LevelInfo = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 5%;
 
-    width: 100%;
-    height: 10%;
+    height: fit-content;
 `;
 
 const ExperienceBarInfo = styled.div`
-    width: 100%;
-    height: fit-content;
-
     font-size: 1.5rem;
-
-    & span {
-        display: inline-block;
-
-        height: fit-content;
-        min-height: 35px;
-    }
 
     & :first-child {
         font-size: 1.4rem;
@@ -44,13 +32,12 @@ const ExperienceBarInfo = styled.div`
 const ExperienceBar = styled.div<{ value: string }>`
     position: relative;
 
-    width: 95%;
-    height: 0.8rem;
-
-    margin-bottom: 3%;
+    height: 1rem;
 
     border: 2px solid var(--navy);
     border-radius: 8px;
+
+    overflow: hidden;
 
     &::before {
         content: "";

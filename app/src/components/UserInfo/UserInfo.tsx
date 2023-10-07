@@ -18,8 +18,7 @@ const Wrapper = styled.section`
 
     display: flex;
     flex-direction: column;
-
-    height: 95%;
+    gap: 2%;
 
     padding: 1% 2%;
 

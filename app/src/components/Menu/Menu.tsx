@@ -21,11 +21,11 @@ const Menu = () => {
                 </MenuItem>
                 <MenuItem active="true">
                     <BsDice5 />
-                    <span>Game Start</span>
+                    <span>Multiplayer</span>
                 </MenuItem>
                 <MenuItem>
                     <BsDice1 />
-                    <span> Practice</span>
+                    <span> SinglePlayer</span>
                 </MenuItem>
                 <MenuItem>
                     <BsBook />
@@ -40,6 +40,8 @@ const Wrapper = styled.aside`
     flex: 1.7;
 
     height: 40%;
+
+    background: white;
 
     box-shadow: var(--shadow);
 `;

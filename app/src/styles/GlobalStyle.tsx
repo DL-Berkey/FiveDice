@@ -24,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
 
         color: #333;
     }
+
+    html {
+        font-size: 16px;
+    }
     
     a {
         text-decoration: none;

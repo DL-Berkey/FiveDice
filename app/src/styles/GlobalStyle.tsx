@@ -21,14 +21,18 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-
+        
         color: #333;
     }
-
+    
     html {
         font-size: 16px;
     }
-    
+
+    body {
+        background: #ADC4CE;
+    }
+
     a {
         text-decoration: none;
     }

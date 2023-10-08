@@ -18,13 +18,14 @@ const Wrapper = styled.section`
 
     display: flex;
     flex-direction: column;
-    gap: 2%;
+    gap: 4%;
+
+    height: 85%;
 
     padding: 1% 2%;
 
     background: white;
 
-    border-radius: 15px;
     box-shadow: var(--shadow);
 `;
 

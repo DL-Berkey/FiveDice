@@ -3,9 +3,18 @@ import styled from "styled-components";
 const ScoreList = () => {
     return (
         <Wrapper>
-            <ScoreItem>2 Win</ScoreItem>
-            <ScoreItem>3 Defeat</ScoreItem>
-            <ScoreItem>5 Draw</ScoreItem>
+            <ScoreItem name="win">
+                <span>2</span>
+                <span>Win</span>
+            </ScoreItem>
+            <ScoreItem name="defeat">
+                <span>3</span>
+                <span>Defeat</span>
+            </ScoreItem>
+            <ScoreItem name="draw">
+                <span>5</span>
+                <span>Draw</span>
+            </ScoreItem>
         </Wrapper>
     );
 };
@@ -13,17 +22,31 @@ const ScoreList = () => {
 const Wrapper = styled.ul`
     display: flex;
     align-items: center;
-
-    height: fit-content;
 `;
 
-const ScoreItem = styled.li`
+const ScoreItem = styled.li<{ name: "win" | "defeat" | "draw" }>`
     flex: 1;
 
     font-size: 1rem;
     text-align: center;
-    font-weight: 700;
     color: var(--navy);
+
+    & :first-child {
+        margin-right: 10%;
+    }
+
+    & :last-child {
+        color: ${(props) => {
+            switch (props.name) {
+                case "win":
+                    return "var(--win)";
+                case "defeat":
+                    return "var(--defeat)";
+                case "draw":
+                    return "var(--draw)";
+            }
+        }};
+    }
 
     & + & {
         border-left: 2px solid var(--navy);

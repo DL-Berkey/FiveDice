@@ -7,7 +7,7 @@ const LevelInfo = () => {
                 <span>Lv.1</span>
                 <span>User Name</span>
             </ExperienceBarInfo>
-            <ExperienceBar value="30" />
+            <ExperienceBar value="20" />
         </Wrapper>
     );
 };
@@ -16,26 +16,26 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5%;
-
-    height: fit-content;
 `;
 
 const ExperienceBarInfo = styled.div`
-    font-size: 1.5rem;
-
     & :first-child {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         margin-right: 5%;
+    }
+
+    & :last-child {
+        font-size: 1rem;
     }
 `;
 
 const ExperienceBar = styled.div<{ value: string }>`
     position: relative;
 
-    height: 1rem;
+    height: 1.2rem;
 
     border: 2px solid var(--navy);
-    border-radius: 8px;
+    border-radius: 10px;
 
     overflow: hidden;
 
@@ -50,8 +50,6 @@ const ExperienceBar = styled.div<{ value: string }>`
         height: 100%;
 
         background: var(--teal);
-
-        z-index: 1;
     }
 `;
 

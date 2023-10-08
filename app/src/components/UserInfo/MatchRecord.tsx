@@ -5,7 +5,7 @@ const MatchRecord = () => {
         <Wrapper>
             <RecordTitle>Match Record</RecordTitle>
             <RecordContainer>
-                <RecordItem value="defeat">
+                <RecordItem name="defeat">
                     <Mode>Normal</Mode>
                     <UserName>엄청긴닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -13,7 +13,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem value="win">
+                <RecordItem name="win">
                     <Mode>Rank</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -21,7 +21,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem value="draw">
+                <RecordItem name="draw">
                     <Mode>Unlimited</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -29,23 +29,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem value="draw">
-                    <Mode>Unlimited</Mode>
-                    <UserName>닉네임</UserName>
-                    <UserPoint>271 Pt</UserPoint>
-                    <VSMark>vs</VSMark>
-                    <EnemyName>상대방</EnemyName>
-                    <EnemyPoint>183 Pt</EnemyPoint>
-                </RecordItem>
-                <RecordItem value="draw">
-                    <Mode>Unlimited</Mode>
-                    <UserName>닉네임</UserName>
-                    <UserPoint>271 Pt</UserPoint>
-                    <VSMark>vs</VSMark>
-                    <EnemyName>상대방</EnemyName>
-                    <EnemyPoint>183 Pt</EnemyPoint>
-                </RecordItem>
-                <RecordItem value="draw">
+                <RecordItem name="draw">
                     <Mode>Unlimited</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -76,9 +60,6 @@ const Wrapper = styled.div`
 
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-
-    /* height: 77%; */
 `;
 
 const RecordTitle = styled.div`
@@ -86,7 +67,7 @@ const RecordTitle = styled.div`
 
     height: 4%;
 
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     text-align: center;
     line-height: 1;
@@ -113,13 +94,11 @@ const RecordContainer = styled.ul`
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-
-    margin-bottom: 8%;
+    gap: 4%;
 `;
 
-const RecordItem = styled.li<{ value: "win" | "defeat" | "draw" }>`
+const RecordItem = styled.li<{ name: "win" | "defeat" | "draw" }>`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -129,18 +108,17 @@ const RecordItem = styled.li<{ value: "win" | "defeat" | "draw" }>`
         "user_point vs_mark enemy_point";
     align-items: center;
 
-    width: 90%;
-    height: 12%;
+    width: 100%;
 
-    padding: 0 2%;
+    padding: 0 1%;
 
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-align: center;
     color: white;
 
-    border-radius: 6px;
+    border-radius: 10px;
     background: ${(props) => {
-        switch (props.value) {
+        switch (props.name) {
             case "win":
                 return "var(--win)";
             case "defeat":
@@ -196,10 +174,6 @@ const RecordPagination = styled.div`
     justify-content: center;
     align-items: center;
     gap: 5%;
-
-    height: 4%;
-
-    align-items: baseline;
 
     & :first-child,
     :last-child {

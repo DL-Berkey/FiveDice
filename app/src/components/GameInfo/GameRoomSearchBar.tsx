@@ -4,7 +4,7 @@ import { BsXLg, BsSearch } from "react-icons/bs";
 const GameRoomSearchBar = () => {
     return (
         <Wrapper>
-            <input placeholder="Searching by room number" />
+            <input placeholder="Searching game room" />
             <FormButton className="delete_button" type="reset">
                 <BsXLg />
             </FormButton>
@@ -20,8 +20,8 @@ const Wrapper = styled.form`
 
     display: flex;
 
-    width: 60%;
-    height: 6%;
+    width: 50%;
+    height: 65%;
 
     border-bottom: 3px solid var(--blue);
     border-radius: 10px;
@@ -35,7 +35,8 @@ const Wrapper = styled.form`
         padding-left: 2%;
         padding-right: 8%;
 
-        font-size: 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
 
         border: none;
 
@@ -59,6 +60,8 @@ const FormButton = styled.button`
 
     & svg {
         fill: white;
+
+        height: 70%;
     }
 
     &.delete_button {

@@ -1,86 +1,146 @@
 import styled from "styled-components";
-import { AiOutlineRight } from "react-icons/ai";
+import { BsFillPersonFill, BsLockFill } from "react-icons/bs";
 
-const GameRoom = () => {
+import { gamemode } from "@/types";
+
+interface Props {
+    room_number: number;
+    gamemode: gamemode;
+    title: string;
+    owner: string;
+    players: number;
+    max_players: number;
+    lock?: boolean;
+}
+
+const GameRoom = (props: Props) => {
     return (
         <Wrapper>
-            <RoomNum>No. 127</RoomNum>
-            <Title>대충 엄청 긴 방 이름인데 이제 어떻게 되려나</Title>
-            <Mode>Mode</Mode>
-            <Players>1 / 2</Players>
-            <JoinButton>
-                <AiOutlineRight />
-            </JoinButton>
+            <RoomData>
+                <span>No. {props.room_number}</span>
+                <span>{props.gamemode}</span>
+            </RoomData>
+            <Title>{props.title}</Title>
+            <GameData>
+                <div>{props.owner}</div>
+                <div>
+                    <span>
+                        {props.players} / {props.max_players}
+                    </span>
+                    <BsFillPersonFill />
+                </div>
+            </GameData>
+            <Lock isLock={props.lock ?? false}>
+                <BsLockFill />
+            </Lock>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.li`
-    display: inline-grid;
-    grid-template-areas:
-        "room_num . join"
-        "title title join"
-        "mode players join";
-    grid-template-columns: 5fr 1fr 0.4fr;
-    grid-template-rows: 2fr 5fr 2fr;
-    align-items: center;
+    position: relative;
 
-    padding-left: 2%;
-
-    border: 2px solid var(--blue);
-    border-radius: 10px;
-
-    overflow: hidden;
-`;
-
-const RoomNum = styled.div`
-    grid: room_num;
-
-    font-size: 1.2rem;
-    color: rgb(166, 166, 166);
-`;
-
-const Title = styled.div`
-    grid-area: title;
-
-    width: 100%;
-    height: fit-content;
-
-    font-size: 1.6rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-`;
-
-const JoinButton = styled.button`
-    grid-area: join;
-
-    height: 100%;
-
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: white;
+    padding: 1% 4%;
 
     background: var(--blue);
+    border-radius: 15px;
 
-    & > svg {
-        width: 70%;
-        height: 70%;
+    box-shadow: var(--shadow);
+`;
 
-        fill: white;
+const RoomData = styled.div`
+    height: calc(100% / 3);
+
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    & span {
+        color: white;
+    }
+
+    & :last-child {
+        float: right;
     }
 `;
 
-const Mode = styled.div`
-    grid-area: mode;
+const Title = styled.p`
+    height: calc(100% / 3);
 
-    color: rgb(166, 166, 166);
+    padding: 0 4%;
+
+    font-size: 1.1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 2;
+    letter-spacing: 0.1rem;
+    color: white;
 `;
 
-const Players = styled.div`
-    grid-area: players;
+const GameData = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    color: rgb(166, 166, 166);
+    height: calc(100% / 3);
+
+    padding: 0 3%;
+
+    font-size: 0.8rem;
+    color: white;
+
+    & div {
+        color: inherit;
+    }
+
+    & :last-child {
+        display: flex;
+        align-items: center;
+
+        color: inherit;
+
+        & span {
+            color: inherit;
+            margin-right: 0.5rem;
+        }
+
+        & svg {
+            fill: white;
+
+            /* width: auto;
+
+            height: 60%; */
+
+            font-size: 1.2rem;
+        }
+    }
+`;
+
+const Lock = styled.div<{ isLock: boolean }>`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: ${(props) => (props.isLock ? "block" : "none")};
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(166, 166, 166, 0.7);
+    border-radius: 15px;
+
+    z-index: 1;
+
+    & svg {
+        position: absolute;
+
+        top: 10%;
+        left: 4%;
+
+        font-size: 1.2rem;
+
+        fill: rgba(1, 1, 1, 1);
+    }
 `;
 
 export default GameRoom;

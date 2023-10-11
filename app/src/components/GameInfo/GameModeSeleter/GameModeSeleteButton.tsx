@@ -2,9 +2,10 @@ import { useState } from "react";
 
 import styled from "styled-components";
 import { BsInfoCircle } from "react-icons/bs";
+import { gamemode } from "@/types";
 
 interface Props {
-    name: string;
+    gamemode: gamemode;
     description: string;
 }
 
@@ -17,13 +18,13 @@ const GameModeSeleteButton = (props: Props) => {
 
     return (
         <Wrapper>
-            <span>{props.name}</span>
+            <span>{props.gamemode}</span>
             <BsInfoCircle
                 onMouseEnter={onEnterOrLeave}
                 onMouseLeave={onEnterOrLeave}
             />
             <ModeInfo open={open}>
-                <div>{props.name}</div>
+                <div>{props.gamemode}</div>
                 <div>{props.description}</div>
             </ModeInfo>
         </Wrapper>
@@ -67,7 +68,7 @@ const ModeInfo = styled.div<{ open: boolean }>`
 
     padding: 6% 3%;
 
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: white;
 
     border-radius: 10px;
@@ -79,7 +80,7 @@ const ModeInfo = styled.div<{ open: boolean }>`
     z-index: 1;
 
     & :first-child {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         color: inherit;
         text-decoration: underline;
 

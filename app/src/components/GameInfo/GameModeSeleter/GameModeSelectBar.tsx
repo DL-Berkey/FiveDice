@@ -6,22 +6,22 @@ const GameModeSelectBar = () => {
         <Wrapper>
             <Title>Quick Match</Title>
             <GameModeSeleteButton
-                name="Rankup"
+                gamemode="Rankup"
                 description="Win the game and get the rank up!"
             />
             <GameModeSeleteButton
-                name="Normal"
+                gamemode="Normal"
                 description="Enjoy normal game!"
             />
             <GameModeSeleteButton
-                name="Extreme"
+                gamemode="Extreme"
                 description="Enjoy extreme game with no score limits!"
             />
         </Wrapper>
     );
 };
 const Wrapper = styled.div`
-    width: 40%;
+    width: 45%;
     height: 8%;
 
     border-radius: 10px;
@@ -30,14 +30,9 @@ const Wrapper = styled.div`
 const Title = styled.div`
     position: relative;
 
-    height: 50%;
-
     margin-bottom: 1%;
 
-    //
-    /* font-size: 1.4rem; */
-    font-size: 100%;
-    //
+    font-size: 1rem;
     text-align: center;
     color: var(--blue);
     font-weight: 700;
@@ -47,11 +42,11 @@ const Title = styled.div`
 
         position: absolute;
         top: 50%;
-        left: 5%;
+        left: 6%;
 
         transform: translateY(-50%);
 
-        width: 28%;
+        width: 32%;
         height: 2px;
 
         background: var(--blue);
@@ -62,13 +57,12 @@ const Title = styled.div`
 
         position: absolute;
         top: 50%;
-        right: 5%;
+        right: 6%;
 
         transform: translateY(-50%);
 
-        width: 28%;
+        width: 32%;
         height: 2px;
-
         background: var(--blue);
     }
 `;

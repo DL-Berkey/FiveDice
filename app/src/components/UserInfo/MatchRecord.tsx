@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
+import { gameresult } from "@/types";
+
 const MatchRecord = () => {
     return (
         <Wrapper>
             <RecordTitle>Match Record</RecordTitle>
             <RecordContainer>
-                <RecordItem name="defeat">
+                <RecordItem gameresult="defeat">
                     <Mode>Normal</Mode>
                     <UserName>엄청긴닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -13,7 +15,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem name="win">
+                <RecordItem gameresult="win">
                     <Mode>Rank</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -21,7 +23,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem name="draw">
+                <RecordItem gameresult="draw">
                     <Mode>Unlimited</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -29,7 +31,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem name="draw">
+                <RecordItem gameresult="draw">
                     <Mode>Unlimited</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -98,7 +100,7 @@ const RecordContainer = styled.ul`
     gap: 4%;
 `;
 
-const RecordItem = styled.li<{ name: "win" | "defeat" | "draw" }>`
+const RecordItem = styled.li<{ gameresult: gameresult }>`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -118,7 +120,7 @@ const RecordItem = styled.li<{ name: "win" | "defeat" | "draw" }>`
 
     border-radius: 10px;
     background: ${(props) => {
-        switch (props.name) {
+        switch (props.gameresult) {
             case "win":
                 return "var(--win)";
             case "defeat":

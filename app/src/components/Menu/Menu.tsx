@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import {
     BsMegaphone,
     BsDice5,
@@ -6,28 +7,29 @@ import {
     BsDice1,
     BsTrophy,
 } from "react-icons/bs";
+import { ROUTER_MAP } from "@/routes";
 
 const Menu = () => {
     return (
         <Wrapper>
             <MenuContainer>
-                <MenuItem>
+                <MenuItem to={ROUTER_MAP.NOTICE}>
                     <BsMegaphone />
                     <span>Notice</span>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem to={ROUTER_MAP.RANKING}>
                     <BsTrophy />
                     <span>Ranking</span>
                 </MenuItem>
-                <MenuItem active="true">
+                <MenuItem to={ROUTER_MAP.MULTIPLAYER}>
                     <BsDice5 />
                     <span>Multiplayer</span>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem to={ROUTER_MAP.SINGLEPLAYER}>
                     <BsDice1 />
                     <span> SinglePlayer</span>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem to={ROUTER_MAP.RULE}>
                     <BsBook />
                     <span> Rule</span>
                 </MenuItem>
@@ -46,7 +48,7 @@ const Wrapper = styled.aside`
     box-shadow: var(--shadow);
 `;
 
-const MenuContainer = styled.ul`
+const MenuContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -59,7 +61,7 @@ const MenuContainer = styled.ul`
     font-size: 1.3rem;
 `;
 
-const MenuItem = styled.li<{ active?: "true" }>`
+const MenuItem = styled(NavLink)`
     display: flex;
     justify-content: left;
     align-items: center;
@@ -67,7 +69,7 @@ const MenuItem = styled.li<{ active?: "true" }>`
 
     padding: 0 8%;
 
-    &[active="true"] {
+    &.active {
         background: var(--blue);
         border-radius: 10px;
 

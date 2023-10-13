@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 import Menu from "../Menu/Menu";
-import GameInfo from "../GameInfo/GameInfo";
 import UserInfo from "../UserInfo/UserInfo";
 
-const Content = () => {
+interface Props {
+    children: React.ReactElement | null;
+}
+
+const Content = (props: Props) => {
     return (
         <Wrapper>
             <Menu />
-            <GameInfo />
+            {props.children}
             <UserInfo />
         </Wrapper>
     );

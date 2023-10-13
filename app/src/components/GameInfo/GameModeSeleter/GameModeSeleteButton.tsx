@@ -49,7 +49,7 @@ const Wrapper = styled.button`
     }
 
     & svg {
-        fill: var(--defeat);
+        fill: var(--red);
     }
 `;
 

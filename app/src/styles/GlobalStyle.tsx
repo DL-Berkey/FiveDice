@@ -12,13 +12,12 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Poppins', "Pretendard-Regular",sans-serif;
 
         --navy: #053B50;
-        --blue: #82A0D8;
         --teal: #64CCC5;
-        --gray: #EEEEEE;
 
-        --win: #82A0D8;
-        --defeat: #EF9595;
-        --draw: gray;
+        --blue: #82A0D8;
+        --red: #EF9595;
+        --gray: gray;
+        --bg_blue: #ADC4CE;
 
         --shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
         rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
@@ -37,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background: #ADC4CE;
+        background: var(--bg_blue);
     }
 
     a {

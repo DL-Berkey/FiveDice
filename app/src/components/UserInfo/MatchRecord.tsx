@@ -122,11 +122,11 @@ const RecordItem = styled.li<{ gameresult: gameresult }>`
     background: ${(props) => {
         switch (props.gameresult) {
             case "win":
-                return "var(--win)";
+                return "var(--blue)";
             case "defeat":
-                return "var(--defeat)";
+                return "var(--red)";
             case "draw":
-                return "var(--draw)";
+                return "var(--gray)";
         }
     }};
 `;

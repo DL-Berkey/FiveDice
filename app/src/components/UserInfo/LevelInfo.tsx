@@ -34,7 +34,7 @@ const ExperienceBar = styled.div<{ value: string }>`
 
     height: 1.2rem;
 
-    border: 2px solid var(--navy);
+    border: 2px solid var(--blue);
     border-radius: 10px;
 
     overflow: hidden;

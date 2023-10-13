@@ -36,7 +36,7 @@ const Wrapper = styled.button`
 
     display: inline-flex;
     justify-content: center;
-    gap: 7%;
+    gap: 4%;
 
     width: calc(100% / 3);
     height: 49%;
@@ -50,6 +50,8 @@ const Wrapper = styled.button`
 
     & svg {
         fill: var(--red);
+
+        transform: scale(0.8);
     }
 `;
 

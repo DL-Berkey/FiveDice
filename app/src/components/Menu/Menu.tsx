@@ -65,9 +65,13 @@ const MenuItem = styled(NavLink)`
     display: flex;
     justify-content: left;
     align-items: center;
-    gap: 18%;
+    gap: 14%;
 
     padding: 0 8%;
+
+    svg {
+        transform: scale(0.8);
+    }
 
     &.active {
         background: var(--blue);

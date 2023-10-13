@@ -107,11 +107,7 @@ const GameData = styled.div`
         & svg {
             fill: white;
 
-            /* width: auto;
-
-            height: 60%; */
-
-            font-size: 1.2rem;
+            transform: scale(1.3);
         }
     }
 `;
@@ -137,9 +133,9 @@ const Lock = styled.div<{ isLock: boolean }>`
         top: 10%;
         left: 4%;
 
-        font-size: 1.2rem;
-
         fill: rgba(1, 1, 1, 1);
+
+        transform: scale(1.3);
     }
 `;
 

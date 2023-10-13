@@ -61,7 +61,7 @@ const FormButton = styled.button`
     & svg {
         fill: white;
 
-        height: 70%;
+        transform: scale(0.7);
     }
 
     &.delete_button {

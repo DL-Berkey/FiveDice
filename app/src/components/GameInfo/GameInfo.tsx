@@ -100,9 +100,11 @@ const GameRoomCreateButton = styled.button`
     }
 
     & svg {
-        font-size: 2em;
+        margin-right: 8%;
 
         fill: white;
+
+        transform: scale(1.5);
     }
 `;
 

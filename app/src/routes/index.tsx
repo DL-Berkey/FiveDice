@@ -5,16 +5,16 @@ import {
 } from "react-router-dom";
 
 import Layout from "@/components/layout/Layout";
-import GameInfo from "@/components/GameInfo/GameInfo";
+import GameInfo from "@/pages/Multiplayer/GameInfo";
 
 // page name and path
 export const ROUTER_MAP = {
     NOTICE: "/",
-    RANKING: "/ranking",
-    MULTIPLAYER: "/multiplayer",
-    SINGLEPLAYER: "/singleplayer",
-    RULE: "/rule",
-    ERROR: "/*",
+    RANKING: "ranking",
+    MULTIPLAYER: "multiplayer",
+    SINGLEPLAYER: "singleplayer",
+    RULE: "rule",
+    ERROR: "*",
 };
 
 export const router = createBrowserRouter(

@@ -129,3 +129,21 @@ const GameRoomList = styled.ul`
 `;
 
 export default GameInfo;
+
+/*
+    Agenda: Pages를 만들어야함
+
+    Pages를 만들게 되면 Dir 구조는?
+
+    1.
+
+    Pages
+        -GameInfo(Multiplayer).tsx
+            -GameRoom.tsx
+            -GameModeSelecter
+                -...tsx
+
+    Pages
+        -GameInfo => Multiplayer
+        -
+*/

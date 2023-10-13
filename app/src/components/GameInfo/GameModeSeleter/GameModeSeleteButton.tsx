@@ -57,7 +57,7 @@ const ModeInfo = styled.div<{ open: boolean }>`
     position: absolute;
 
     top: 50%;
-    right: -305%;
+    left: 100%;
 
     transform: translateY(-50%);
 

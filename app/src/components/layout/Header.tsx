@@ -1,11 +1,15 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 import { AiOutlineUser } from "react-icons/ai";
+
+import { ROUTER_MAP } from "@/routes";
 
 const Header = () => {
     return (
         <Wrapper>
             <Logo>
-                <a href="#">Five Dice</a>
+                <Link to={ROUTER_MAP.NOTICE}>Five Dice</Link>
             </Logo>
             <Account>
                 <button>

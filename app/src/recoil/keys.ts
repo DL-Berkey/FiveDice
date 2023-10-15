@@ -1,8 +1,0 @@
-export const ATOM_KEY = {
-    SHOW_MENU: "SHOW_MENU",
-    SHOW_USERINFO: "SHOW_USERINFO",
-};
-
-export const SELECTOR_KEY = {
-    SHOW_MENU_AND_USERINFO: "SHOW_MENU_AND_USERINFO",
-};

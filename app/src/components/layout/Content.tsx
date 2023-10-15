@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
+import { NO_SIDE_COMPONENT_URL } from "@/constants";
 import Menu from "../Menu/Menu";
 import UserInfo from "../UserInfo/UserInfo";
 
@@ -8,11 +10,19 @@ interface Props {
 }
 
 const Content = (props: Props) => {
+    const location = useLocation();
+
+    let showSideComponent = true;
+
+    if (NO_SIDE_COMPONENT_URL.includes(location.pathname)) {
+        showSideComponent = false;
+    }
+
     return (
         <Wrapper>
-            <Menu />
+            {showSideComponent && <Menu />}
             {props.children}
-            <UserInfo />
+            {showSideComponent && <UserInfo />}
         </Wrapper>
     );
 };

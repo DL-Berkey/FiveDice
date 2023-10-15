@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 import { BsInfoCircle } from "react-icons/bs";
+
 import { gamemode } from "@/types";
+import { ROUTER_MAP } from "@/constants";
 
 interface Props {
     gamemode: gamemode;
@@ -12,12 +15,18 @@ interface Props {
 const GameModeSeleteButton = (props: Props) => {
     const [open, setOpen] = useState<boolean>(false);
 
+    const navigate = useNavigate();
+
+    const onClick = () => {
+        navigate(ROUTER_MAP.GAMEBOARD, { state: { gamemode: props.gamemode } });
+    };
+
     const onEnterOrLeave = () => {
         setOpen((prev) => !prev);
     };
 
     return (
-        <Wrapper>
+        <Wrapper onClick={onClick}>
             <span>{props.gamemode}</span>
             <BsInfoCircle
                 onMouseEnter={onEnterOrLeave}

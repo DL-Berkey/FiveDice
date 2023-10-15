@@ -30,9 +30,11 @@ const GameRoom = (props: Props) => {
                     <BsFillPersonFill />
                 </div>
             </GameData>
-            <Lock isLock={props.lock ?? false}>
-                <BsLockFill />
-            </Lock>
+            {props.lock && (
+                <Lock>
+                    <BsLockFill />
+                </Lock>
+            )}
         </Wrapper>
     );
 };
@@ -112,12 +114,10 @@ const GameData = styled.div`
     }
 `;
 
-const Lock = styled.div<{ isLock: boolean }>`
+const Lock = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-
-    display: ${(props) => (props.isLock ? "block" : "none")};
 
     width: 100%;
     height: 100%;

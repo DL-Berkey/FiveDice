@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { AiOutlineUser } from "react-icons/ai";
 
-import { ROUTER_MAP } from "@/routes";
+import { ROUTER_MAP } from "@/constants";
 
 const Header = () => {
     return (

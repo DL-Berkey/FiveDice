@@ -4,7 +4,7 @@ import { BsPlusLg } from "react-icons/bs";
 
 import GameRoom from "./GameRoom";
 import GameRoomSearchBar from "./GameRoomSearchBar";
-import GameModeSelectBar from "./GameModeSeleter/GameModeSelectBar";
+import GameModeSelectBar from "./GameModeSeleter/GameQuickStartBar";
 
 const GameInfo = () => {
     return (

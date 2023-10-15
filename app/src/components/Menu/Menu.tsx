@@ -7,7 +7,7 @@ import {
     BsDice1,
     BsTrophy,
 } from "react-icons/bs";
-import { ROUTER_MAP } from "@/routes";
+import { ROUTER_MAP } from "@/constants";
 
 const Menu = () => {
     return (

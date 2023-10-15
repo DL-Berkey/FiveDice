@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import GameModeSeleteButton from "./GameModeSeleteButton";
+import GameModeSeleteButton from "./GameQuickStartButton";
 
 const GameModeSelectBar = () => {
     return (

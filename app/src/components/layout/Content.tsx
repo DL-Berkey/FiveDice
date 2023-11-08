@@ -22,7 +22,7 @@ const Content = (props: Props) => {
         <Wrapper>
             {showSideComponent && <Menu />}
             {props.children}
-            {showSideComponent && <UserInfo />}
+            {/* {showSideComponent && <UserInfo />} */}
         </Wrapper>
     );
 };

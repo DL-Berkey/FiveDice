@@ -39,8 +39,7 @@ const Menu = () => {
 };
 
 const Wrapper = styled.aside`
-    flex: 1.7;
-
+    width: 12%;
     height: 40%;
 
     background: white;

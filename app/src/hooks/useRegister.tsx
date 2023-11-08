@@ -25,7 +25,7 @@ interface RegisterLoading {
 
 type RegisterResult = RegisterSuccess | RegisterError | RegisterLoading;
 
-export const useRegister = () => {
+const useRegister = () => {
     const [registerResult, setRegisterResult] = useState<RegisterResult>({
         status: "loading",
         data: null,
@@ -57,3 +57,5 @@ export const useRegister = () => {
     };
     return { ...registerResult, register };
 };
+
+export default useRegister;

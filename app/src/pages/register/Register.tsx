@@ -1,6 +1,6 @@
 import { useRef, MouseEvent } from "react";
 
-import { useRegister } from "@/hooks/useRegister";
+import useRegister from "@/hooks/useRegister";
 
 const Register = () => {
     const emailRef = useRef<HTMLInputElement | null>(null);

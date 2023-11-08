@@ -7,6 +7,7 @@ export const ROUTER_MAP = {
     RULE: "/rule",
     GAMEBOARD: "/game",
     REGISTER: "/register",
+    LOGIN: "/login",
     ERROR: "*",
 } as const;
 

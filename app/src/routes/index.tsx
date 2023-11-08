@@ -9,6 +9,7 @@ import Layout from "@/components/layout/Layout";
 import GameInfo from "@/pages/multiplayer/GameInfo";
 import GameBoard from "@/pages/gameboard/GameBoard";
 import Register from "@/pages/register/Register";
+import Login from "@/pages/login/Login";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -16,6 +17,7 @@ export const router = createBrowserRouter(
             <Route path={ROUTER_MAP.MULTIPLAYER} element={<GameInfo />} />
             <Route path={ROUTER_MAP.GAMEBOARD} element={<GameBoard />} />
             <Route path={ROUTER_MAP.REGISTER} element={<Register />} />
+            <Route path={ROUTER_MAP.LOGIN} element={<Login />} />
             // Error page
             <Route path={ROUTER_MAP.ERROR} element={<GameInfo />} />
         </Route>

@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
-import { gameresult } from "@/types";
+import { GameResult } from "@/types";
 
 const ScoreList = () => {
     return (
         <Wrapper>
-            <ScoreItem gameresult="win">
+            <ScoreItem GameResult="win">
                 <span>2</span>
                 <span>Win</span>
             </ScoreItem>
-            <ScoreItem gameresult="defeat">
+            <ScoreItem GameResult="defeat">
                 <span>3</span>
                 <span>Defeat</span>
             </ScoreItem>
-            <ScoreItem gameresult="draw">
+            <ScoreItem GameResult="draw">
                 <span>5</span>
                 <span>Draw</span>
             </ScoreItem>
@@ -26,7 +26,7 @@ const Wrapper = styled.ul`
     align-items: center;
 `;
 
-const ScoreItem = styled.li<{ gameresult: gameresult }>`
+const ScoreItem = styled.li<{ GameResult: GameResult }>`
     flex: 1;
 
     font-size: 1rem;
@@ -39,7 +39,7 @@ const ScoreItem = styled.li<{ gameresult: gameresult }>`
 
     & :last-child {
         color: ${(props) => {
-            switch (props.gameresult) {
+            switch (props.GameResult) {
                 case "win":
                     return "var(--blue)";
                 case "defeat":

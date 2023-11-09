@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-import { gameresult } from "@/types";
+import { GameResult } from "@/types";
 
 const MatchRecord = () => {
     return (
         <Wrapper>
             <RecordTitle>Match Record</RecordTitle>
             <RecordContainer>
-                <RecordItem gameresult="defeat">
+                <RecordItem GameResult="defeat">
                     <Mode>Normal</Mode>
                     <UserName>엄청긴닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -15,7 +15,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem gameresult="win">
+                <RecordItem GameResult="win">
                     <Mode>Rank</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -23,7 +23,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem gameresult="draw">
+                <RecordItem GameResult="draw">
                     <Mode>Unlimited</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -31,7 +31,7 @@ const MatchRecord = () => {
                     <EnemyName>상대방</EnemyName>
                     <EnemyPoint>183 Pt</EnemyPoint>
                 </RecordItem>
-                <RecordItem gameresult="draw">
+                <RecordItem GameResult="draw">
                     <Mode>Unlimited</Mode>
                     <UserName>닉네임</UserName>
                     <UserPoint>271 Pt</UserPoint>
@@ -100,7 +100,7 @@ const RecordContainer = styled.ul`
     gap: 4%;
 `;
 
-const RecordItem = styled.li<{ gameresult: gameresult }>`
+const RecordItem = styled.li<{ GameResult: GameResult }>`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -120,7 +120,7 @@ const RecordItem = styled.li<{ gameresult: gameresult }>`
 
     border-radius: 10px;
     background: ${(props) => {
-        switch (props.gameresult) {
+        switch (props.GameResult) {
             case "win":
                 return "var(--blue)";
             case "defeat":

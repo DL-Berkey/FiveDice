@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BsInfoCircle } from "react-icons/bs";
 
-import { gamemode } from "@/types";
+import { GameMode } from "@/types";
 import { ROUTER_MAP } from "@/constants";
 
 interface Props {
-    gamemode: gamemode;
+    GameMode: GameMode;
     description: string;
 }
 
@@ -18,7 +18,7 @@ const GameModeSeleteButton = (props: Props) => {
     const navigate = useNavigate();
 
     const onClick = () => {
-        navigate(ROUTER_MAP.GAMEBOARD, { state: { gamemode: props.gamemode } });
+        navigate(ROUTER_MAP.GAMEBOARD, { state: { GameMode: props.GameMode } });
     };
 
     const onEnterOrLeave = () => {
@@ -27,13 +27,13 @@ const GameModeSeleteButton = (props: Props) => {
 
     return (
         <Wrapper onClick={onClick}>
-            <span>{props.gamemode}</span>
+            <span>{props.GameMode}</span>
             <BsInfoCircle
                 onMouseEnter={onEnterOrLeave}
                 onMouseLeave={onEnterOrLeave}
             />
             <ModeInfo open={open}>
-                <div>{props.gamemode}</div>
+                <div>{props.GameMode}</div>
                 <div>{props.description}</div>
             </ModeInfo>
         </Wrapper>

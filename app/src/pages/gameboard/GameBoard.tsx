@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { BsXLg } from "react-icons/bs";
 
-import { gamemode } from "@/types";
+import { GameMode } from "@/types";
 
 const GameBoard = () => {
     const location = useLocation();
-    const state = location.state as { gamemode: gamemode };
+    const state = location.state as { GameMode: GameMode };
 
     return (
         <Wrapper>
             <Navigation>
-                <div>{state.gamemode}</div>
+                <div>{state.GameMode}</div>
                 <div>나의 게임</div>
                 <button>
                     <BsXLg />

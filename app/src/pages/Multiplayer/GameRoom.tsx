@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { BsFillPersonFill, BsLockFill } from "react-icons/bs";
 
-import { gamemode } from "@/types";
+import { GameMode } from "@/types";
 
 interface Props {
     room_number: number;
-    gamemode: gamemode;
+    GameMode: GameMode;
     title: string;
     owner: string;
     players: number;
@@ -18,7 +18,7 @@ const GameRoom = (props: Props) => {
         <Wrapper>
             <RoomData>
                 <span>No. {props.room_number}</span>
-                <span>{props.gamemode}</span>
+                <span>{props.GameMode}</span>
             </RoomData>
             <Title>{props.title}</Title>
             <GameData>

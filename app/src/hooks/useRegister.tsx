@@ -3,6 +3,8 @@ import { User, createUserWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "@/firebaseInstanse";
 
+import Controller from "@/firebaseInstanse/controller";
+
 interface RegisterData {
     nickname: string;
     email: string;
@@ -33,16 +35,27 @@ const useRegister = () => {
 
     const register = async (userData: RegisterData) => {
         try {
+            // email duplication check
+            const checkResult = await Controller.User.get(userData.email);
+
+            if (checkResult) {
+                throw new Error("User is existing");
+            }
+
             const result = await createUserWithEmailAndPassword(
                 auth,
                 userData.email,
                 userData.password
             );
 
-            // TODO: auto check email verify
-            // TODO: add user nickname and uid to firestore
-
             const user = result.user;
+
+            // add user's data and email to Firestore
+            await Controller.User.set({
+                uid: user.uid,
+                email: userData.email,
+                nickname: userData.nickname,
+            });
 
             setRegisterResult({
                 status: "success",

@@ -1,37 +1,43 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import {
+    BsPerson,
     BsMegaphone,
     BsDice5,
     BsBook,
     BsDice1,
     BsTrophy,
 } from "react-icons/bs";
+
 import { ROUTER_MAP } from "@/constants";
 
 const Menu = () => {
     return (
         <Wrapper>
             <MenuContainer>
+                <MenuItem to={ROUTER_MAP.LOGIN}>
+                    <BsPerson />
+                    <span>로그인</span>
+                </MenuItem>
                 <MenuItem to={ROUTER_MAP.NOTICE}>
                     <BsMegaphone />
-                    <span>Notice</span>
+                    <span>공지</span>
                 </MenuItem>
                 <MenuItem to={ROUTER_MAP.RANKING}>
                     <BsTrophy />
-                    <span>Ranking</span>
+                    <span>랭킹</span>
                 </MenuItem>
                 <MenuItem to={ROUTER_MAP.MULTIPLAYER}>
                     <BsDice5 />
-                    <span>Multiplayer</span>
+                    <span>멀티 플레이</span>
                 </MenuItem>
                 <MenuItem to={ROUTER_MAP.SINGLEPLAYER}>
                     <BsDice1 />
-                    <span> SinglePlayer</span>
+                    <span>싱글 플레이</span>
                 </MenuItem>
                 <MenuItem to={ROUTER_MAP.RULE}>
                     <BsBook />
-                    <span> Rule</span>
+                    <span>하는 법</span>
                 </MenuItem>
             </MenuContainer>
         </Wrapper>
@@ -44,7 +50,7 @@ const Wrapper = styled.aside`
 
     background: white;
 
-    box-shadow: var(--shadow);
+    border-radius: 10px;
 `;
 
 const MenuContainer = styled.div`
@@ -68,7 +74,7 @@ const MenuItem = styled(NavLink)`
 
     padding: 0 8%;
 
-    svg {
+    & svg {
         transform: scale(0.8);
     }
 

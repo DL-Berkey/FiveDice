@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import { AiOutlineUser } from "react-icons/ai";
+import { BsDice5 } from "react-icons/bs";
 
 import { ROUTER_MAP } from "@/constants";
 
@@ -9,13 +9,9 @@ const Header = () => {
     return (
         <Wrapper>
             <Logo>
+                <BsDice5 />
                 <Link to={ROUTER_MAP.NOTICE}>Five Dice</Link>
             </Logo>
-            <Account>
-                <button>
-                    <AiOutlineUser />
-                </button>
-            </Account>
         </Wrapper>
     );
 };
@@ -25,28 +21,30 @@ const Wrapper = styled.header`
     justify-content: space-between;
     align-items: center;
 
-    height: 6%;
-    font-size: 2rem;
+    height: 9%;
 
-    padding: 0 2%;
+    padding: 0 4%;
     margin-bottom: 2%;
-    font-weight: 700;
 
-    background: white;
-    box-shadow: var(--shadow);
+    font-size: 3.5rem;
+    font-weight: 700;
 `;
 
 const Logo = styled.div`
     flex: 1;
-`;
 
-const Account = styled.div`
-    flex: 1;
+    display: flex;
+    align-items: center;
 
-    & > button {
-        float: right;
+    & svg {
+        margin-right: 0.5%;
 
-        font-size: inherit;
+        fill: white;
+        transform: rotate(10deg);
+    }
+
+    & a {
+        color: white;
     }
 `;
 

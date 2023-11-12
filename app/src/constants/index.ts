@@ -1,13 +1,13 @@
 // page name and path
 export const ROUTER_MAP = {
+    LOGIN: "/login",
+    REGISTER: "/register",
     NOTICE: "/",
     RANKING: "/ranking",
     MULTIPLAYER: "/multiplayer",
     SINGLEPLAYER: "/singleplayer",
     RULE: "/rule",
     GAMEBOARD: "/game",
-    REGISTER: "/register",
-    LOGIN: "/login",
     ERROR: "*",
 } as const;
 

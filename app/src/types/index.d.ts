@@ -1,8 +1,8 @@
-export type GameMode = "Rankup" | "Normal" | "Extreme";
+type GameMode = "Rankup" | "Normal" | "Extreme";
 
-export type GameResult = "win" | "defeat" | "draw";
+type GameResult = "win" | "defeat" | "draw";
 
-export type GameBoard = {
+type GameBoard = {
     [userUid: string]: {
         Aces: number;
         Twos: number;

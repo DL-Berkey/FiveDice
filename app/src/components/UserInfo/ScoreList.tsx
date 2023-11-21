@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { GameResult } from "@/types";
-
 const ScoreList = () => {
     return (
         <Wrapper>
@@ -24,6 +22,8 @@ const ScoreList = () => {
 const Wrapper = styled.ul`
     display: flex;
     align-items: center;
+
+    width: 100%;
 `;
 
 const ScoreItem = styled.li<{ GameResult: GameResult }>`

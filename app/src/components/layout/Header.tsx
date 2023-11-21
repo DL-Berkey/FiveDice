@@ -17,16 +17,15 @@ const Header = () => {
 };
 
 const Wrapper = styled.header`
+    grid-area: header;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    height: 9%;
+    padding: 0 2%;
 
-    padding: 0 4%;
-    margin-bottom: 2%;
-
-    font-size: 3.5rem;
+    font-size: 2rem;
     font-weight: 700;
 `;
 
@@ -39,12 +38,12 @@ const Logo = styled.div`
     & svg {
         margin-right: 0.5%;
 
-        fill: white;
+        fill: var(--accent-color);
         transform: rotate(10deg);
     }
 
     & a {
-        color: white;
+        color: var(--accent-color);
     }
 `;
 

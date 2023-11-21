@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { BsFillPersonFill, BsLockFill } from "react-icons/bs";
 
-import { GameMode } from "@/types";
+import { BsFillPersonFill, BsLockFill } from "react-icons/bs";
+import { FaCrown } from "react-icons/fa";
 
 interface Props {
-    room_number: number;
-    GameMode: GameMode;
+    roomNumber: number;
+    gamemode: GameMode;
     title: string;
     owner: string;
     players: number;
@@ -17,12 +17,15 @@ const GameRoom = (props: Props) => {
     return (
         <Wrapper>
             <RoomData>
-                <span>No. {props.room_number}</span>
-                <span>{props.GameMode}</span>
+                <span>No. {props.roomNumber}</span>
+                <span>{props.gamemode}</span>
             </RoomData>
             <Title>{props.title}</Title>
             <GameData>
-                <div>{props.owner}</div>
+                <div>
+                    <FaCrown />
+                    <span>{props.owner}</span>
+                </div>
                 <div>
                     <span>
                         {props.players} / {props.max_players}
@@ -42,12 +45,14 @@ const GameRoom = (props: Props) => {
 const Wrapper = styled.li`
     position: relative;
 
-    padding: 1% 4%;
+    padding: 1% 3%;
 
-    background: var(--blue);
-    border-radius: 15px;
+    background: white;
+    border-radius: 16px;
 
     box-shadow: var(--shadow);
+
+    overflow: hidden;
 `;
 
 const RoomData = styled.div`
@@ -57,7 +62,8 @@ const RoomData = styled.div`
     font-weight: 500;
 
     & span {
-        color: white;
+        color: var(--sub-accent-color);
+        font-weight: bold;
     }
 
     & :last-child {
@@ -76,7 +82,7 @@ const Title = styled.p`
     overflow: hidden;
     line-height: 2;
     letter-spacing: 0.1rem;
-    color: white;
+    color: black;
 `;
 
 const GameData = styled.div`
@@ -84,33 +90,31 @@ const GameData = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    height: calc(100% / 3);
+    height: calc((100% - 2%) / 3);
 
     padding: 0 3%;
 
     font-size: 0.8rem;
-    color: white;
+    color: black;
 
     & div {
-        color: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12%;
+
+        width: 14%;
     }
 
-    & :last-child {
-        display: flex;
-        align-items: center;
-
+    & div span {
         color: inherit;
+        font-size: 1rem;
+    }
 
-        & span {
-            color: inherit;
-            margin-right: 0.5rem;
-        }
+    & div svg {
+        fill: var(--sub-accent-color);
 
-        & svg {
-            fill: white;
-
-            transform: scale(1.3);
-        }
+        transform: scale(1.3);
     }
 `;
 
@@ -123,7 +127,6 @@ const Lock = styled.div`
     height: 100%;
 
     background: rgba(166, 166, 166, 0.7);
-    border-radius: 15px;
 
     z-index: 1;
 

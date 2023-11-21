@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
-import { BsPlusLg } from "react-icons/bs";
+import { BsList, BsSearch } from "react-icons/bs";
 
 import GameRoom from "./GameRoom";
 import GameRoomSearchBar from "./GameRoomSearchBar";
-import GameModeSelectBar from "./GameModeSeleter/GameQuickStartBar";
+import GameQuickStartBar from "./gameQuickStart/GameQuickStartBar";
+import SubjectTitle from "@/components/common/SubjectTitle";
 
-const GameInfo = () => {
+const Gameplay = () => {
     return (
         <Wrapper>
             <GameRoomNavigation>
-                <GameRoomCreateButton>
-                    <BsPlusLg />
-                    <span>Room</span>
-                </GameRoomCreateButton>
+                <SubjectTitle SVGIcon={<BsSearch />} title="찾기" />
                 <GameRoomSearchBar />
             </GameRoomNavigation>
+            <GameQuickStartBar />
             <GameRoomContainer>
+                <SubjectTitle SVGIcon={<BsList />} title="40 게임" />
                 <GameRoomList>
                     <GameRoom
                         room_number={127}
@@ -27,7 +27,7 @@ const GameInfo = () => {
                         max_players={5}
                         lock={true}
                     />
-                    {Array(18).fill(
+                    {Array(4).fill(
                         <GameRoom
                             room_number={127}
                             gamemode="Rankup"
@@ -39,111 +39,50 @@ const GameInfo = () => {
                     )}
                 </GameRoomList>
             </GameRoomContainer>
-            <GameModeSelectBar />
         </Wrapper>
     );
 };
 
-const Wrapper = styled.section`
-    position: relative;
-
-    flex: 7;
-
+const Wrapper = styled.div`
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    gap: 2%;
+    height: 100%;
 
-    padding: 2%;
-
-    background: white;
-
-    box-shadow: var(--shadow);
+    padding: 1% 15%;
 `;
 
 const GameRoomNavigation = styled.nav`
-    position: relative;
-
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     width: 100%;
-    height: 8%;
-`;
-
-const GameRoomCreateButton = styled.button`
-    position: absolute;
-
-    top: 50%;
-    left: 2%;
-
-    transform: translateY(-50%);
-
-    display: flex;
-    align-items: center;
-    gap: 2%;
-
-    width: 10%;
-    height: 70%;
-
-    padding: 0 1%;
-
-    background: var(--blue);
-    border-radius: 10px;
-
-    & span {
-        font-size: 1.4em;
-        font-weight: 600;
-        color: white;
-    }
-
-    & svg {
-        margin-right: 8%;
-
-        fill: white;
-
-        transform: scale(1.5);
-    }
+    height: 12%;
 `;
 
 const GameRoomContainer = styled.div`
-    flex: 1;
+    width: 100%;
+    height: 65%;
 
-    width: 95%;
-    overflow: scroll;
+    overflow: hidden;
 `;
 
 const GameRoomList = styled.ul`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 20%;
+    grid-auto-rows: 8rem;
     row-gap: 4%;
-    column-gap: 6%;
+    column-gap: 2%;
 
-    width: 100%;
     height: 100%;
 
+    margin: 0 auto;
     padding: 0 2%;
+
+    overflow: scroll;
 `;
 
-export default GameInfo;
-
-/*
-    Agenda: Pages를 만들어야함
-
-    Pages를 만들게 되면 Dir 구조는?
-
-    1.
-
-    Pages
-        -GameInfo(Multiplayer).tsx
-            -GameRoom.tsx
-            -GameModeSelecter
-                -...tsx
-
-    Pages
-        -GameInfo => Multiplayer
-        -
-*/
+export default Gameplay;

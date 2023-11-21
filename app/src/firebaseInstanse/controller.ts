@@ -9,7 +9,6 @@ import {
 } from "firebase/firestore";
 
 import { db } from ".";
-import { GameBoard, GameMode } from "@/types";
 
 interface Win {
     gameresult: "win";

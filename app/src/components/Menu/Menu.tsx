@@ -5,7 +5,6 @@ import {
     BsMegaphone,
     BsDice5,
     BsBook,
-    BsDice1,
     BsTrophy,
 } from "react-icons/bs";
 
@@ -29,11 +28,7 @@ const Menu = () => {
                 </MenuItem>
                 <MenuItem to={ROUTER_MAP.MULTIPLAYER}>
                     <BsDice5 />
-                    <span>멀티 플레이</span>
-                </MenuItem>
-                <MenuItem to={ROUTER_MAP.SINGLEPLAYER}>
-                    <BsDice1 />
-                    <span>싱글 플레이</span>
+                    <span>게임 플레이</span>
                 </MenuItem>
                 <MenuItem to={ROUTER_MAP.RULE}>
                     <BsBook />
@@ -45,22 +40,20 @@ const Menu = () => {
 };
 
 const Wrapper = styled.aside`
-    width: 12%;
-    height: 40%;
+    grid-area: menu;
 
     background: white;
-
-    border-radius: 10px;
 `;
 
 const MenuContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 2%;
 
     height: 100%;
 
-    padding: 8% 4%;
+    padding: 8% 6%;
+    padding: 8% 0;
 
     text-align: center;
     font-size: 1.3rem;
@@ -70,24 +63,23 @@ const MenuItem = styled(NavLink)`
     display: flex;
     justify-content: left;
     align-items: center;
-    gap: 14%;
+    gap: 26%;
 
     padding: 0 8%;
+
+    font-size: 1.5rem;
 
     & svg {
         transform: scale(0.8);
     }
 
     &.active {
-        background: var(--blue);
-        border-radius: 10px;
-
         & svg {
-            fill: white;
+            fill: var(--sub-accent-color);
         }
 
         & span {
-            color: white;
+            color: var(--sub-accent-color);
         }
     }
 `;

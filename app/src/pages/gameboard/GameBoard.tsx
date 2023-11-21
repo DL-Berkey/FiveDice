@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { BsXLg } from "react-icons/bs";
 
-import { GameMode } from "@/types";
-
 const GameBoard = () => {
     const location = useLocation();
     const state = location.state as { GameMode: GameMode };

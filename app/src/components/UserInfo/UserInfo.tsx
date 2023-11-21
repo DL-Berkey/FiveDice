@@ -5,11 +5,11 @@ import MatchRecord from "./MatchRecord";
 
 const UserInfo = () => {
     return (
-        <Wrapper>
+        <>
             <LevelInfo />
             <ScoreList />
             <MatchRecord />
-        </Wrapper>
+        </>
     );
 };
 
@@ -23,10 +23,6 @@ const Wrapper = styled.section`
     height: 85%;
 
     padding: 1% 2%;
-
-    background: white;
-
-    box-shadow: var(--shadow);
 `;
 
 export default UserInfo;

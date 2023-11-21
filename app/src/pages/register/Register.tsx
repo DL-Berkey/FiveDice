@@ -1,7 +1,7 @@
 import { useRef, useState, useDeferredValue, MouseEvent } from "react";
 
 import useRegister from "@/hooks/useRegister";
-import { checkEmail, checkPassword } from "@/utils/check";
+import { checkEmail, checkPassword } from "@/utils/checkInputValue";
 
 const Register = () => {
     const emailRef = useRef<HTMLInputElement | null>(null);

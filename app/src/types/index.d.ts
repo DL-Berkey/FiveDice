@@ -1,4 +1,4 @@
-type GameMode = "Rankup" | "Normal" | "Extreme";
+type GameMode = "Solo" | "Rankup" | "Normal" | "Extreme";
 
 type GameResult = "win" | "defeat" | "draw";
 

@@ -11,13 +11,14 @@ const GlobalStyle = createGlobalStyle`
     :root {
         font-family: 'Poppins', "Pretendard-Regular",sans-serif;
 
-        --navy: #053B50;
-        --teal: #64CCC5;
-
-        --blue: #82A0D8;
+        --blue: #6499E9;
         --red: #EF9595;
-        --gray: gray;
-        --bg_blue: #ADC4CE;
+
+        --dark-01: #1d2125;
+        --dark-02: #212529;
+        
+        --accent-color: #82A0D8;
+        --sub-accent-color:#7ED7C1;
 
         --shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
         rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
@@ -33,10 +34,6 @@ const GlobalStyle = createGlobalStyle`
     
     html {
         font-size: 16px;
-    }
-
-    body {
-        background: var(--bg_blue);
     }
 
     a {

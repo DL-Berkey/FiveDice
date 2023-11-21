@@ -2,23 +2,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
-import { BsInfoCircle } from "react-icons/bs";
 
-import { GameMode } from "@/types";
-import { ROUTER_MAP } from "@/constants";
+import { ROUTER_MAP, GAMEMODE, GAMEMODE_DESCRIPTION } from "@/constants";
+import Button from "@/styles/Button";
 
 interface Props {
-    GameMode: GameMode;
-    description: string;
+    SVGIcon: React.ReactNode | null;
+    gamemode: GameMode;
 }
 
-const GameModeSeleteButton = (props: Props) => {
+const GameQuickStartButton = ({ SVGIcon, gamemode }: Props) => {
     const [open, setOpen] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
     const onClick = () => {
-        navigate(ROUTER_MAP.GAMEBOARD, { state: { GameMode: props.GameMode } });
+        navigate(ROUTER_MAP.GAMEBOARD, { state: { GameMode: gamemode } });
     };
 
     const onEnterOrLeave = () => {
@@ -26,41 +25,38 @@ const GameModeSeleteButton = (props: Props) => {
     };
 
     return (
-        <Wrapper onClick={onClick}>
-            <span>{props.GameMode}</span>
-            <BsInfoCircle
-                onMouseEnter={onEnterOrLeave}
-                onMouseLeave={onEnterOrLeave}
-            />
+        <Wrapper
+            onClick={onClick}
+            onMouseEnter={onEnterOrLeave}
+            onMouseLeave={onEnterOrLeave}
+        >
+            {SVGIcon}
+            <span>{GAMEMODE[gamemode]}</span>
             <ModeInfo open={open}>
-                <div>{props.GameMode}</div>
-                <div>{props.description}</div>
+                <div>{GAMEMODE[gamemode]}</div>
+                <div>{GAMEMODE_DESCRIPTION[gamemode]}</div>
             </ModeInfo>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.button`
+    ${Button}
+
     position: relative;
 
-    display: inline-flex;
-    justify-content: center;
-    gap: 4%;
-
-    width: calc(100% / 3);
-    height: 49%;
-
-    font-size: 1.4rem;
-    font-weight: 600;
+    & + & {
+        margin-left: 2%;
+    }
 
     & span {
-        color: var(--blue);
+        color: white;
     }
 
     & svg {
-        fill: var(--red);
+        fill: var(--sub-accent-color);
 
-        transform: scale(0.8);
+        transform: scale(1.2);
     }
 `;
 
@@ -68,7 +64,7 @@ const ModeInfo = styled.div<{ open: boolean }>`
     position: absolute;
 
     top: 50%;
-    left: 100%;
+    left: 110%;
 
     transform: translateY(-50%);
 
@@ -80,10 +76,11 @@ const ModeInfo = styled.div<{ open: boolean }>`
     padding: 6% 3%;
 
     font-size: 1.2rem;
-    color: white;
+    color: black;
 
     border-radius: 10px;
-    background: var(--blue);
+    background: white;
+
     box-shadow: var(--shadow);
 
     box-shadow: var(--shadow);
@@ -103,4 +100,4 @@ const ModeInfo = styled.div<{ open: boolean }>`
     }
 `;
 
-export default GameModeSeleteButton;
+export default GameQuickStartButton;

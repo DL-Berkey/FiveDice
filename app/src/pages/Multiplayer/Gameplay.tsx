@@ -19,7 +19,7 @@ const Gameplay = () => {
                 <SubjectTitle SVGIcon={<BsList />} title="40 게임" />
                 <GameRoomList>
                     <GameRoom
-                        room_number={127}
+                        roomNumber={127}
                         gamemode="Rankup"
                         title="대충 무지막지하게 막 긴 방 제목임 암튼 그러함"
                         owner="김현준"
@@ -29,7 +29,7 @@ const Gameplay = () => {
                     />
                     {Array(4).fill(
                         <GameRoom
-                            room_number={127}
+                            roomNumber={127}
                             gamemode="Rankup"
                             title="대충 무지막지하게 막 긴 방 제목임 암튼 그러함"
                             owner="김현준"
@@ -48,6 +48,8 @@ const Wrapper = styled.div`
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
+
+    width: 100%;
     height: 100%;
 
     padding: 1% 15%;

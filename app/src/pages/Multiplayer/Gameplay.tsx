@@ -11,7 +11,7 @@ const Gameplay = () => {
     return (
         <Wrapper>
             <GameRoomNavigation>
-                <SubjectTitle SVGIcon={<BsSearch />} title="찾기" />
+                <SubjectTitle SVGIcon={<BsSearch />} title="게임 찾기" />
                 <GameRoomSearchBar />
             </GameRoomNavigation>
             <GameQuickStartBar />

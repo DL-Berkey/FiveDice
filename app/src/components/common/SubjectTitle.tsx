@@ -20,7 +20,8 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 6%;
 
-    width: 15%;
+    width: fit-content;
+    min-width: 15%;
 
     margin: 1% auto;
 

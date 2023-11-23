@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 
     & span {
         font-size: 1.8rem;
-        font-weight: 400;
+        font-weight: bold;
         color: var(--sub-accent-color);
     }
 

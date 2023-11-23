@@ -14,7 +14,7 @@ import { SlLogout } from "react-icons/sl";
 import useLogout from "@/hooks/useLogout";
 import { userDataAtom } from "@/recoil/atom";
 import { ROUTER_MAP } from "@/constants";
-import MenuItem from "@/styles/MenuItem";
+import { MenuItem } from "@/styles/common";
 
 const Menu = () => {
     const { isLogin, logout } = useLogout();

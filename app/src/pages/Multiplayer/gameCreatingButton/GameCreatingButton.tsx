@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { BsPlusLg } from "react-icons/bs";
 
-import Button from "@/styles/Button";
+import { Button } from "@/styles/common";
 
 const GameCreatingButton = () => {
     return (

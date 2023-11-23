@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { ROUTER_MAP, GAMEMODE, GAMEMODE_DESCRIPTION } from "@/constants";
-import Button from "@/styles/Button";
+import { Button } from "@/styles/common";
 
 interface Props {
     SVGIcon: React.ReactNode | null;

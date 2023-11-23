@@ -8,7 +8,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 
 import useLogin from "@/hooks/useLogin";
 import Logo from "@/components/common/Logo";
-import Button from "@/styles/Button";
+import { Button } from "@/styles/common";
 import { ROUTER_MAP } from "@/constants";
 
 const Login = () => {

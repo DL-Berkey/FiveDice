@@ -9,8 +9,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     :root {
-        font-family: 'Poppins', "Pretendard-Regular",sans-serif;
-
         --blue: #6499E9;
         --red: #EF9595;
 
@@ -28,6 +26,8 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+
+        font-family: 'Poppins', "Pretendard-Regular",sans-serif;
         
         color: #333;
     }

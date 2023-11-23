@@ -1,5 +1,5 @@
 import { useRef, MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -15,23 +15,34 @@ const Login = () => {
     const emailRef = useRef<HTMLInputElement | null>(null);
     const passwordRef = useRef<HTMLInputElement | null>(null);
 
-    const { loginResult, login } = useLogin();
+    const { status, setPendingStatus, login } = useLogin();
 
-    const onClick = (e: MouseEvent<HTMLButtonElement>) => {
+    // const [isError, setIsError] = useState(status === "error");
+
+    const navigate = useNavigate();
+
+    if (status === "success") {
+        navigate(ROUTER_MAP.MULTIPLAYER, { replace: true });
+    }
+    // console.log(isError);
+    const onClickInput = () => {
+        setPendingStatus();
+    };
+
+    const onClickButton = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         if (emailRef.current === null || passwordRef.current === null) {
             return;
         }
 
-        // 성공 결과 값 넘겨줘서 게임플레이로 리다이렉트
         login(emailRef.current.value, passwordRef.current.value);
     };
 
     return (
         <Wrapper>
             <Logo />
-            <Alert display={loginResult?.status === "error" ? "block" : "none"}>
+            <Alert display={status === "error" ? "block" : "none"}>
                 로그인에 실패했습니다.
             </Alert>
             <Form>
@@ -42,6 +53,7 @@ const Login = () => {
                         ref={emailRef}
                         type="email"
                         placeholder="이메일"
+                        onClick={onClickInput}
                     />
                 </InputWrapper>
                 <InputWrapper>
@@ -51,9 +63,10 @@ const Login = () => {
                         ref={passwordRef}
                         type="password"
                         placeholder="비밀번호"
+                        onClick={onClickInput}
                     />
                 </InputWrapper>
-                <LoginButton onClick={onClick}>로그인</LoginButton>
+                <LoginButton onClick={onClickButton}>로그인</LoginButton>
                 <Suggestion>
                     <span>아직 계정이 없으신가요?</span>
                     <Link to={ROUTER_MAP.REGISTER}>회원가입</Link>

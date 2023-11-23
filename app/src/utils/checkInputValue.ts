@@ -9,8 +9,8 @@ export const checkEmail = (email: string) => {
 export const checkPassword = (password: string) => {
     // 1. 영어 대소문자
     // 2. 숫자
-    // 3. 8글자 이상
-    const regex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/;
+    // 3. 6글자 이상
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
 
     const result = regex.test(password);
 

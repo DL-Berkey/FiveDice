@@ -18,3 +18,7 @@ type GameBoard = {
         Yacht: number;
     };
 };
+
+interface UserData {
+    nickname: string;
+}

@@ -22,21 +22,24 @@ const Gameplay = () => {
                         roomNumber={127}
                         gamemode="Rankup"
                         title="대충 무지막지하게 막 긴 방 제목임 암튼 그러함"
-                        owner="김현준"
+                        host="김현준"
                         players={1}
                         max_players={5}
                         lock={true}
                     />
-                    {Array(4).fill(
-                        <GameRoom
-                            roomNumber={127}
-                            gamemode="Rankup"
-                            title="대충 무지막지하게 막 긴 방 제목임 암튼 그러함"
-                            owner="김현준"
-                            players={1}
-                            max_players={5}
-                        />
-                    )}
+                    {Array(4)
+                        .fill(undefined)
+                        .map((_, idx) => (
+                            <GameRoom
+                                key={idx}
+                                roomNumber={127}
+                                gamemode="Rankup"
+                                title="대충 무지막지하게 막 긴 방 제목임 암튼 그러함"
+                                host="김현준"
+                                players={1}
+                                max_players={5}
+                            />
+                        ))}
                 </GameRoomList>
             </GameRoomContainer>
         </Wrapper>

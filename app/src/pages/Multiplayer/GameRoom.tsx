@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 import { BsFillPersonFill, BsLockFill } from "react-icons/bs";
 import { FaCrown } from "react-icons/fa";
+import { GAMEMODE } from "@/constants";
 
 interface Props {
     roomNumber: number;
     gamemode: GameMode;
     title: string;
-    owner: string;
+    host: string;
     players: number;
     max_players: number;
     lock?: boolean;
@@ -18,13 +19,13 @@ const GameRoom = (props: Props) => {
         <Wrapper>
             <RoomData>
                 <span>No. {props.roomNumber}</span>
-                <span>{props.gamemode}</span>
+                <span>{GAMEMODE[props.gamemode]}</span>
             </RoomData>
             <Title>{props.title}</Title>
             <GameData>
                 <div>
                     <FaCrown />
-                    <span>{props.owner}</span>
+                    <span>{props.host}</span>
                 </div>
                 <div>
                     <span>

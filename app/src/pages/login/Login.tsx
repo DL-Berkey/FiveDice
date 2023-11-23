@@ -17,14 +17,12 @@ const Login = () => {
 
     const { status, setPendingStatus, login } = useLogin();
 
-    // const [isError, setIsError] = useState(status === "error");
-
     const navigate = useNavigate();
 
     if (status === "success") {
         navigate(ROUTER_MAP.MULTIPLAYER, { replace: true });
     }
-    // console.log(isError);
+
     const onClickInput = () => {
         setPendingStatus();
     };

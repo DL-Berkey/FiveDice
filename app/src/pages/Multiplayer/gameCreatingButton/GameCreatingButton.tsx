@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { BsPlusLg } from "react-icons/bs";
 
-import { Button } from "@/styles/common";
+import { button } from "@/styles/common";
 
 const GameCreatingButton = () => {
     return (
@@ -14,7 +14,7 @@ const GameCreatingButton = () => {
 };
 
 const Wrapper = styled.button`
-    ${Button}
+    ${button}
 
     & svg {
         fill: var(--sub-accent-color);

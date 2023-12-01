@@ -1,5 +1,7 @@
+import { EMAIL_REGEX, PASSWORD_REGEX } from "@/constants";
+
 export const checkEmail = (email: string) => {
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const regex = EMAIL_REGEX;
 
     const result = regex.test(email);
 
@@ -7,10 +9,7 @@ export const checkEmail = (email: string) => {
 };
 
 export const checkPassword = (password: string) => {
-    // 1. 영어 대소문자
-    // 2. 숫자
-    // 3. 6글자 이상
-    const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
+    const regex = PASSWORD_REGEX;
 
     const result = regex.test(password);
 

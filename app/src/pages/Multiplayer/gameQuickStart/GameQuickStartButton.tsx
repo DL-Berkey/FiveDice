@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { ROUTER_MAP, GAMEMODE, GAMEMODE_DESCRIPTION } from "@/constants";
-import { Button } from "@/styles/common";
+import { button } from "@/styles/common";
 
 interface Props {
     SVGIcon: React.ReactNode | null;
@@ -41,7 +41,7 @@ const GameQuickStartButton = ({ SVGIcon, gamemode }: Props) => {
 };
 
 const Wrapper = styled.button`
-    ${Button}
+    ${button}
 
     position: relative;
 

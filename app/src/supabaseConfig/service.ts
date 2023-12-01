@@ -7,7 +7,10 @@ class User {
             .select()
             .eq("email", email)
             .maybeSingle();
+
         if (error) {
+            console.error(error);
+
             return null;
         }
 
@@ -18,7 +21,9 @@ class User {
         const { data, error } = await supabase.auth.getSession();
 
         if (error) {
-            throw new Error(error.name + " " + error.message);
+            console.error(error);
+
+            return null;
         }
 
         return data.session?.user;
@@ -30,20 +35,43 @@ class User {
             .insert({ email, nickname });
 
         if (error) {
-            throw new Error(error.message);
+            console.error(error);
+
+            return null;
         }
 
         return data;
     }
 
-    async register(email: string, password: string) {
+    async verifyOTPCode(email: string, token: string) {
+        const { data, error } = await supabase.auth.verifyOtp({
+            email,
+            token,
+            type: "email",
+        });
+
+        if (error) {
+            console.error(error);
+
+            return false;
+        }
+
+        return data.user !== null;
+    }
+
+    /**
+     * this function will send otp code to user's email
+     */
+    async signUp(email: string, password: string) {
         const { data, error } = await supabase.auth.signUp({
             email,
             password,
         });
 
         if (error) {
-            throw new Error(error.name + " " + error.message);
+            console.error(error);
+
+            return null;
         }
 
         return data;
@@ -56,31 +84,19 @@ class User {
         });
 
         if (error) {
-            throw new Error(error.name + " " + error.message);
+            console.error(error);
+            return null;
         }
 
         return data;
-
-        // const { user } = data;
-
-        // if (user.email) {
-        //     const result = await this.getUserByEmail(user.email);
-
-        //     if (!result) {
-        //         throw new Error()
-        //     }
-
-        //     return { nickname: result.nickname };
-        // } else {
-        //     return null;
-        // }
     }
 
     async logout() {
         const { error } = await supabase.auth.signOut();
 
         if (error) {
-            throw new Error(error.name + " " + error.message);
+            console.error(error);
+            return null;
         }
     }
 }

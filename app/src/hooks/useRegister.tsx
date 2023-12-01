@@ -1,74 +1,57 @@
-import { useState } from "react";
-import { User, createUserWithEmailAndPassword } from "firebase/auth";
+import { useMutation } from "react-query";
+import { User, Session } from "@supabase/supabase-js";
 
-import { auth } from "@/firebaseInstanse";
+import UserSerivce from "@/supabaseConfig/service";
 
-import Controller from "@/firebaseInstanse/controller";
+type Register = (
+    email: string,
+    password: string
+) => Promise<
+    | {
+          signUpStatus: "success";
+          result: {
+              user: User | null;
+              session: Session | null;
+          } | null;
+      }
+    | {
+          signUpStatus: "user already exists" | "sending mail failure";
+          result: null;
+      }
+>;
 
-interface RegisterData {
-    nickname: string;
-    email: string;
-    password: string;
-}
+type mutationStatus = "error" | "idle" | "loading" | "success";
 
-interface RegisterSuccess {
-    status: "success";
-    data: User;
-}
-interface RegisterError {
-    status: "error";
-    data: null;
-}
+const useRegister: () => [mutationStatus, Register] = () => {
+    const mutation = useMutation(
+        ({ email, password }: { email: string; password: string }) =>
+            UserSerivce.signUp(email, password),
+        {
+            onError: (error) => {
+                console.error(error);
+            },
+        }
+    );
 
-interface RegisterLoading {
-    status: "loading";
-    data: null;
-}
-
-type RegisterResult = RegisterSuccess | RegisterError | RegisterLoading;
-
-const useRegister = () => {
-    const [registerResult, setRegisterResult] = useState<RegisterResult>({
-        status: "loading",
-        data: null,
-    });
-
-    const register = async (userData: RegisterData) => {
+    const register: Register = async (email: string, password: string) => {
         try {
-            // email duplication check
-            const checkResult = await Controller.User.get(userData.email);
+            // 이미 가입한 유저인지 확인
+            const user = await UserSerivce.getUserByEmail(email);
 
-            if (checkResult) {
-                throw new Error("User is existing");
+            if (user) {
+                return { signUpStatus: "user already exists", result: null };
             }
 
-            const result = await createUserWithEmailAndPassword(
-                auth,
-                userData.email,
-                userData.password
-            );
+            const result = await mutation.mutateAsync({ email, password });
 
-            const user = result.user;
-
-            // add user's data and email to Firestore
-            await Controller.User.set({
-                uid: user.uid,
-                email: userData.email,
-                nickname: userData.nickname,
-            });
-
-            setRegisterResult({
-                status: "success",
-                data: user,
-            });
+            return { signUpStatus: "success", result };
         } catch (e: unknown) {
-            setRegisterResult({
-                status: "error",
-                data: null,
-            });
+            console.error(e);
+
+            return { signUpStatus: "sending mail failure", result: null };
         }
     };
-    return { ...registerResult, register };
+    return [mutation.status, register];
 };
 
 export default useRegister;

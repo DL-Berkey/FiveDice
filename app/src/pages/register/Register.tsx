@@ -1,101 +1,40 @@
-import { useRef, useState, useDeferredValue, MouseEvent } from "react";
+import { useEffect } from "react";
+import {
+    useParams,
+    useNavigate,
+    useLocation,
+    Navigate,
+} from "react-router-dom";
+import { useRecoilValue } from "recoil";
 
-import useRegister from "@/hooks/useRegister";
-import { checkEmail, checkPassword } from "@/utils/checkInputValue";
+import { isLoginAtom } from "@/recoil/atom";
+import AuthPhase from "./AuthPhase";
+import UserDetail from "./UserDetail";
+import { ROUTER_MAP } from "@/constants";
 
 const Register = () => {
-    const emailRef = useRef<HTMLInputElement | null>(null);
-    const passwordRef = useRef<HTMLInputElement | null>(null);
-    const nicknameRef = useRef<HTMLInputElement | null>(null);
+    const { phase } = useParams<{ phase: string }>();
 
-    const [isAvailableEmail, setIsAvailableEmail] = useState<boolean>(false);
-    const deferredIsAvailableEmail = useDeferredValue(isAvailableEmail);
+    const navigate = useNavigate();
 
-    const [isAvailablePassword, setIsAvailablePassword] =
-        useState<boolean>(false);
-    const deferredIsAvailablePassword = useDeferredValue(isAvailablePassword);
+    const { state } = useLocation() as { state: { auth: boolean } };
 
-    const { status, register } = useRegister();
+    const isLogin = useRecoilValue(isLoginAtom);
 
-    const onClickComfirm = (e: MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-
-        if (
-            emailRef.current === null ||
-            passwordRef.current === null ||
-            nicknameRef.current === null
-        ) {
-            return;
+    useEffect(() => {
+        // 로그인 했을 시에는 회원가입 페이지로 접근 금지
+        if (isLogin) {
+            navigate(ROUTER_MAP.NOTICE, { replace: true });
         }
+    });
 
-        register({
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
-            nickname: nicknameRef.current.value,
-        });
-    };
-
-    const onChangeEmailInput = () => {
-        if (!emailRef.current || emailRef.current.value === "") {
-            setIsAvailableEmail(false);
-
-            return;
-        }
-
-        const result = checkEmail(emailRef.current.value);
-
-        if (result) {
-            setIsAvailableEmail(true);
-        } else {
-            setIsAvailableEmail(false);
-        }
-    };
-
-    const onChangePasswordInput = () => {
-        if (!passwordRef.current || passwordRef.current.value === "") {
-            setIsAvailablePassword(false);
-
-            return;
-        }
-
-        const result = checkPassword(passwordRef.current.value);
-
-        if (result) {
-            setIsAvailablePassword(true);
-        } else {
-            setIsAvailablePassword(false);
-        }
-    };
-
-    return (
-        <div>
-            <div>회원가입 결과: {status}</div>
-            <form>
-                <input name="email" ref={nicknameRef} placeholder="nickname" />
-                <label htmlFor="email">
-                    유효한 이메일 형식: {deferredIsAvailableEmail ? "O" : "X"}
-                </label>
-                <input
-                    name="email"
-                    ref={emailRef}
-                    type="email"
-                    placeholder="email"
-                    onChange={onChangeEmailInput}
-                />
-                <button>인증코드 발송</button>
-                <label htmlFor="password">
-                    유효한 패스워드: {deferredIsAvailablePassword ? "O" : "X"}
-                </label>
-                <input
-                    ref={passwordRef}
-                    type="password"
-                    placeholder="password"
-                    onChange={onChangePasswordInput}
-                />
-                <button onClick={onClickComfirm}>회원가입</button>
-            </form>
-        </div>
-    );
+    if (phase === "1") {
+        return <AuthPhase />;
+    } else if (phase === "2" && state?.auth) {
+        return <UserDetail />;
+    } else {
+        return <Navigate to={ROUTER_MAP.NOTICE} replace />;
+    }
 };
 
 export default Register;

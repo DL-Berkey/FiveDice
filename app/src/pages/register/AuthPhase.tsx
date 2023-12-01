@@ -1,65 +1,72 @@
-import { useState, useEffect, ChangeEvent, MouseEvent } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { IoMdCheckmarkCircle } from "react-icons/io";
+
 import useRegister from "@/hooks/useRegister";
 import { error, success } from "@/utils/toastWrapper";
-import { checkEmail, checkPassword } from "@/utils/checkInputValue";
+import { EMAIL_REGEX, PASSWORD_REGEX, ROUTER_MAP } from "@/constants";
 import Logo from "@/components/common/Logo";
-import { section, form, inputWrapper, input, button } from "@/styles/common";
-import { ROUTER_MAP } from "@/constants";
+import { section, form, formRow, input, button } from "@/styles/common";
 
 type InputType = "email" | "password" | "confirmPassword";
 
-type Validation = "ok" | "notok" | "empty";
+type Validation = "ok" | "notok";
 
 type VALIDATION_TEXT = Record<Validation, string>;
-
-interface FormData {
-    email: string;
-    password: string;
-    confirmPassword: string;
-    emailValidation: Validation;
-    passwordValidation: Validation;
-    confirmPasswordValidation: Validation;
-    disabledButton: boolean;
-}
 
 const VALIDATION_TEXT_MAP: Record<InputType, VALIDATION_TEXT> = {
     email: {
         ok: "사용 가능한 이메일 형식입니다.",
         notok: "사용할 수 없는 이메일 형식입니다.",
-        empty: "",
     },
     password: {
         ok: "사용 가능한 비밀번호입니다.",
         notok: "영문자, 숫자, 6글자가 포함되어야 합니다.",
-        empty: "",
     },
     confirmPassword: {
         ok: "비밀번호와 일치합니다.",
         notok: "비밀번호와 일치하지 않습니다.",
-        empty: "",
     },
 };
 
+interface FormData {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
 const AuthPhase = () => {
-    const [formData, setFormData] = useState<FormData>({
-        email: "",
-        password: "",
-        confirmPassword: "",
-        emailValidation: "empty",
-        passwordValidation: "empty",
-        confirmPasswordValidation: "empty",
-        disabledButton: true,
+    // form의 관리를 위한 useForm
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors, isValid },
+    } = useForm<FormData>({
+        mode: "onChange",
+        defaultValues: { email: "", password: "", confirmPassword: "" },
     });
 
+    // useForm의 watch를 이용해서 가져온 각 input의 value
+    const emailValue = watch("email");
+    const passwordValue = watch("password");
+    const confirmPasswordValue = watch("confirmPassword");
+
+    // react-router-dom의 훅
     const navigate = useNavigate();
 
-    const { status, register } = useRegister();
+    // 회원가입 처리를 위한 커스텀 훅
+    const [_, signUp] = useRegister();
 
-    useEffect(() => {
-        if (status === "success") {
+    // submit 함수
+    const onSubmit = handleSubmit(async (data) => {
+        const signUpResult = await signUp(data.email, data.password);
+
+        if (signUpResult.signUpStatus === "success") {
             success("이메일로 인증코드를 발송했습니다.");
 
             navigate(ROUTER_MAP.REGISTER.origin + "/2", {
@@ -67,163 +74,88 @@ const AuthPhase = () => {
                     auth: true,
                 },
             });
+        } else if (signUpResult.signUpStatus === "user already exists") {
+            error("사용할 수 없는 이메일입니다.");
+        } else {
+            error("인증코드 전송에 실패했습니다.");
         }
-
-        if (status === "error") {
-            error("이미 사용중인 이메일입니다.");
-        }
-    }, [status]);
-
-    const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.currentTarget;
-
-        if (value === "") {
-            setFormData((prev) => ({
-                ...prev,
-                email: value,
-                emailValidation: "empty",
-            }));
-
-            return;
-        }
-
-        const checkResult = checkEmail(value);
-
-        setFormData((prev) => ({
-            ...prev,
-            email: value,
-            emailValidation: checkResult ? "ok" : "notok",
-            disabledButton: !(
-                (checkResult ? "ok" : "notok") &&
-                prev.passwordValidation === "ok" &&
-                prev.confirmPasswordValidation === "ok"
-            ),
-        }));
-    };
-
-    const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.currentTarget;
-
-        if (value === "") {
-            setFormData((prev) => ({
-                ...prev,
-                password: value,
-                passwordValidation: "empty",
-            }));
-
-            return;
-        }
-
-        const checkResult = checkPassword(value);
-
-        setFormData((prev) => ({
-            ...prev,
-            password: value,
-            passwordValidation: checkResult ? "ok" : "notok",
-            disabledButton: !(
-                (checkResult ? "ok" : "notok") &&
-                prev.emailValidation === "ok" &&
-                prev.confirmPasswordValidation === "ok"
-            ),
-        }));
-    };
-
-    const onChangeConfirmPassword = (e: ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.currentTarget;
-
-        if (value === "") {
-            setFormData((prev) => ({
-                ...prev,
-                confirmPassword: value,
-                confirmPasswordValidation: "empty",
-            }));
-
-            return;
-        }
-
-        setFormData((prev) => ({
-            ...prev,
-            confirmPassword: value,
-            confirmPasswordValidation: prev.password === value ? "ok" : "notok",
-            disabledButton: !(
-                (prev.password === value ? "ok" : "notok") &&
-                prev.emailValidation === "ok" &&
-                prev.passwordValidation === "ok"
-            ),
-        }));
-    };
-
-    const onClick = (e: MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-
-        if (
-            formData.emailValidation === "ok" &&
-            formData.passwordValidation === "ok" &&
-            formData.confirmPasswordValidation === "ok"
-        ) {
-            register(formData.email, formData.password);
-        }
-    };
+    });
 
     return (
         <Wrapper>
             <Logo />
-            <Form>
-                <InputWrapper>
-                    <Label htmlFor="email">
-                        {VALIDATION_TEXT_MAP.email[formData.emailValidation]}
+            <Form onSubmit={onSubmit}>
+                <FormRow>
+                    <Label>
+                        {/* 사용 불가능한 이메일에 대한 텍스트 */}
+                        {errors.email && VALIDATION_TEXT_MAP.email.notok}
+
+                        {/* 사용 가능한 이메일에 대한 텍스트 */}
+                        {!errors.email &&
+                            emailValue !== "" &&
+                            VALIDATION_TEXT_MAP.email.ok}
                     </Label>
+                    <MdEmail />
                     <Input
                         id="email"
-                        name="email"
                         type="email"
                         placeholder="이메일"
-                        onChange={onChangeEmail}
-                        $invalid={formData.emailValidation === "notok"}
+                        $invalid={errors.email?.type === "pattern"}
+                        {...register("email", {
+                            required: true,
+                            pattern: EMAIL_REGEX,
+                        })}
                     />
-                </InputWrapper>
-                <InputWrapper>
-                    <Label htmlFor="password">
-                        {
-                            VALIDATION_TEXT_MAP.password[
-                                formData.passwordValidation
-                            ]
-                        }
+                </FormRow>
+                <FormRow>
+                    <Label>
+                        {/* 사용 불가능한 비밀번호에 대한 텍스트 */}
+                        {errors.password &&
+                            errors.password.type === "pattern" &&
+                            VALIDATION_TEXT_MAP.password.notok}
+
+                        {/* 사용 가능한 비밀번호에 대한 텍스트 */}
+                        {!errors.password &&
+                            passwordValue !== "" &&
+                            VALIDATION_TEXT_MAP.password.ok}
                     </Label>
+                    <RiLockPasswordFill />
                     <Input
                         id="password"
-                        name="password"
                         type="password"
                         placeholder="비밀번호"
-                        onChange={onChangePassword}
-                        $invalid={formData.passwordValidation === "notok"}
+                        {...register("password", {
+                            required: true,
+                            pattern: PASSWORD_REGEX,
+                        })}
+                        $invalid={errors.password?.type === "pattern"}
                     />
-                </InputWrapper>
-                <InputWrapper>
-                    <Label htmlFor="confirmPassword">
-                        {
-                            VALIDATION_TEXT_MAP.confirmPassword[
-                                formData.confirmPasswordValidation
-                            ]
-                        }
+                </FormRow>
+                <FormRow>
+                    <Label>
+                        {/* 비밀번호와 불일치에 대한 텍스트 */}
+                        {errors.confirmPassword &&
+                            errors.confirmPassword.type === "validate" &&
+                            VALIDATION_TEXT_MAP.confirmPassword.notok}
+
+                        {/* 비밀번호와 일치에 대한 텍스트 */}
+                        {!errors.confirmPassword &&
+                            confirmPasswordValue !== "" &&
+                            VALIDATION_TEXT_MAP.confirmPassword.ok}
                     </Label>
+                    <IoMdCheckmarkCircle />
                     <Input
                         id="confirmPassword"
-                        name="confirmPassword"
                         type="password"
                         placeholder="비밀번호 확인"
-                        onChange={onChangeConfirmPassword}
-                        $invalid={
-                            formData.confirmPasswordValidation === "notok"
-                        }
+                        {...register("confirmPassword", {
+                            required: true,
+                            validate: (value) => value === passwordValue,
+                        })}
+                        $invalid={errors.confirmPassword?.type === "validate"}
                     />
-                </InputWrapper>
-                <SendButton
-                    disabled={formData.disabledButton}
-                    onClick={onClick}
-                >
-                    인증코드 발송
-                </SendButton>
+                </FormRow>
+                <SendButton disabled={!isValid}>인증코드 발송</SendButton>
             </Form>
         </Wrapper>
     );
@@ -241,10 +173,14 @@ const Form = styled.form`
     gap: 6%;
 `;
 
-const InputWrapper = styled.div`
-    ${inputWrapper}
+const FormRow = styled.div`
+    ${formRow}
 
-    height: 5rem;
+    height: 6rem;
+
+    & svg {
+        top: 65%;
+    }
 `;
 
 const Label = styled.label`
@@ -278,8 +214,7 @@ const SendButton = styled.button`
     color: white;
 
     &:disabled {
-        background: var(--disabled-accent-color);
-        background: red;
+        background: var(--disabled-color);
     }
 `;
 

@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-export const Button = css`
+export const button = css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@ export const Button = css`
     border-radius: 14px;
 `;
 
-export const MenuItem = css`
+export const menuItem = css`
     display: flex;
     justify-content: left;
     align-items: center;
@@ -34,4 +34,59 @@ export const MenuItem = css`
     & svg {
         transform: scale(0.8);
     }
+`;
+
+export const section = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+
+    width: 30%;
+
+    margin-bottom: 8%;
+    padding: 2% 0;
+
+    background: white;
+
+    box-shadow: var(--shadow);
+`;
+
+export const form = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12%;
+
+    width: 100%;
+    height: 100%;
+`;
+export const formRow = css`
+    position: relative;
+
+    width: 64%;
+    height: 3.4rem;
+
+    & svg {
+        position: absolute;
+        top: 50%;
+        left: 4%;
+
+        transform: translateY(-50%) scale(1.4);
+
+        fill: var(--sub-accent-color);
+    }
+`;
+
+export const input = css`
+    width: 100%;
+    height: 100%;
+
+    padding-left: 12%;
+
+    font-size: 1.2rem;
+
+    border: 2px solid var(--sub-accent-color);
 `;

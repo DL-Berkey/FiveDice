@@ -14,7 +14,7 @@ import { SlLogout } from "react-icons/sl";
 import useLogout from "@/hooks/useLogout";
 import { userDataAtom } from "@/recoil/atom";
 import { ROUTER_MAP } from "@/constants";
-import { MenuItem } from "@/styles/common";
+import { menuItem } from "@/styles/common";
 
 const Menu = () => {
     const { isLogin, logout } = useLogout();
@@ -83,7 +83,7 @@ const Wrapper = styled.div`
 `;
 
 const Item = styled(NavLink)`
-    ${MenuItem}
+    ${menuItem}
 
     & span {
         position: relative;
@@ -123,7 +123,7 @@ const Item = styled(NavLink)`
 
 //
 const Account = styled(NavLink)`
-    ${MenuItem}
+    ${menuItem}
 
     & svg {
         fill: var(--accent-color);
@@ -138,7 +138,7 @@ const Account = styled(NavLink)`
 `;
 
 const LogoutButton = styled.button`
-    ${MenuItem}
+    ${menuItem}
 
     margin-top: auto;
 

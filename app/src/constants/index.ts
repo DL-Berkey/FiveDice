@@ -1,7 +1,10 @@
 // page name and path
 export const ROUTER_MAP = {
     LOGIN: "/login",
-    REGISTER: "/register",
+    REGISTER: {
+        origin: "/register",
+        extendedOrigin: "/register/:phase",
+    },
     NOTICE: "/",
     RANKING: "/ranking",
     MULTIPLAYER: "/multiplayer",
@@ -26,3 +29,10 @@ export const GAMEMODE_DESCRIPTION: Record<GameMode, string> = {
     Normal: "일반적인 게임입니다.",
     Extreme: "점수 제한이 없는 15턴의 극한의 경기를 해보세요!",
 } as const;
+
+export const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+// 1. 영어 대소문자
+// 2. 숫자
+// 3. 6글자 이상
+export const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;

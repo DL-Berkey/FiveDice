@@ -1,10 +1,7 @@
 // page name and path
 export const ROUTER_MAP = {
     LOGIN: "/login",
-    REGISTER: {
-        origin: "/register",
-        extendedOrigin: "/register/:phase",
-    },
+    REGISTER: "/register",
     NOTICE: "/",
     RANKING: "/ranking",
     MULTIPLAYER: "/multiplayer",

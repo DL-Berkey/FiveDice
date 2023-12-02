@@ -1,4 +1,4 @@
-import { useRef, MouseEvent } from "react";
+import { useRef, useEffect, MouseEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import styled from "styled-components";
@@ -7,24 +7,26 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 
 import useLogin from "@/hooks/useLogin";
-import Logo from "@/components/common/Logo";
-import { Button } from "@/styles/common";
 import { ROUTER_MAP } from "@/constants";
+import Logo from "@/components/common/Logo";
+import { section, form, formRow, input, button } from "@/styles/common";
 
 const Login = () => {
     const emailRef = useRef<HTMLInputElement | null>(null);
     const passwordRef = useRef<HTMLInputElement | null>(null);
 
-    const { status, setPendingStatus, login } = useLogin();
+    const { status, resetStatus, login } = useLogin();
 
     const navigate = useNavigate();
 
-    if (status === "success") {
-        navigate(ROUTER_MAP.MULTIPLAYER, { replace: true });
-    }
+    useEffect(() => {
+        if (status === "success") {
+            navigate(ROUTER_MAP.MULTIPLAYER, { replace: true });
+        }
+    });
 
     const onClickInput = () => {
-        setPendingStatus();
+        resetStatus();
     };
 
     const onClickButton = (e: MouseEvent<HTMLButtonElement>) => {
@@ -44,26 +46,24 @@ const Login = () => {
                 로그인에 실패했습니다.
             </Alert>
             <Form>
-                <InputWrapper>
+                <FormRow>
                     <MdEmail />
                     <Input
-                        id="email"
                         ref={emailRef}
                         type="email"
                         placeholder="이메일"
                         onClick={onClickInput}
                     />
-                </InputWrapper>
-                <InputWrapper>
+                </FormRow>
+                <FormRow>
                     <RiLockPasswordFill />
                     <Input
-                        id="password"
                         ref={passwordRef}
                         type="password"
                         placeholder="비밀번호"
                         onClick={onClickInput}
                     />
-                </InputWrapper>
+                </FormRow>
                 <LoginButton onClick={onClickButton}>로그인</LoginButton>
                 <Suggestion>
                     <span>아직 계정이 없으신가요?</span>
@@ -74,23 +74,13 @@ const Login = () => {
     );
 };
 
-const Wrapper = styled.div`
-    position: relative;
+const Wrapper = styled.section`
+    ${section}
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2%;
+    position: relative;
 
     width: 30%;
     height: 60%;
-
-    margin-bottom: 8%;
-
-    background: white;
-
-    box-shadow: var(--shadow);
 `;
 
 const Alert = styled.div<{ display: "block" | "none" }>`
@@ -105,47 +95,21 @@ const Alert = styled.div<{ display: "block" | "none" }>`
 `;
 
 const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8%;
+    ${form}
 
-    width: 100%;
-    height: 60%;
-
-    margin-top: 10%;
+    margin-top: 4%;
 `;
 
-const InputWrapper = styled.div`
-    position: relative;
-
-    width: 64%;
-    height: 16%;
-
-    & svg {
-        position: absolute;
-        top: 50%;
-        left: 4%;
-
-        transform: translateY(-50%) scale(1.4);
-
-        fill: var(--sub-accent-color);
-    }
+const FormRow = styled.div`
+    ${formRow}
 `;
 
 const Input = styled.input`
-    width: 100%;
-    height: 100%;
-
-    padding-left: 12%;
-
-    font-size: 1.2rem;
-
-    outline: 1px solid var(--sub-accent-color);
+    ${input}
 `;
 
 const LoginButton = styled.button`
-    ${Button}
+    ${button}
 
     color: white;
     width: 20%;

@@ -1,17 +1,19 @@
 // page name and path
 export const ROUTER_MAP = {
-    LOGIN: "/login",
-    REGISTER: "/register",
-    NOTICE: "/",
-    RANKING: "/ranking",
-    MULTIPLAYER: "/multiplayer",
-    SINGLEPLAYER: "/singleplayer",
-    RULE: "/rule",
-    GAMEBOARD: "/game",
-    ERROR: "*",
+    login: "/login",
+    account: {
+        root: "/account",
+        register: "/account/register",
+        login: "/account/login",
+        setting: "/account/setting",
+    },
+    notice: "/",
+    ranking: "/ranking",
+    gameplay: "/gameplay",
+    rule: "/rule",
+    gameboard: "/game",
+    error: "*",
 } as const;
-
-export const NO_SIDE_COMPONENT_URL: readonly string[] = [ROUTER_MAP.GAMEBOARD];
 
 export const GAMEMODE: Record<GameMode, string> = {
     Solo: "AI",

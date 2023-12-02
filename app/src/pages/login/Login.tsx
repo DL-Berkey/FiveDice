@@ -8,8 +8,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 
 import useLogin from "@/hooks/useLogin";
 import { ROUTER_MAP } from "@/constants";
-import Logo from "@/components/common/Logo";
-import { section, form, formRow, input, button } from "@/styles/common";
+import { form, formRow, input, button } from "@/styles/common";
 
 const Login = () => {
     const emailRef = useRef<HTMLInputElement | null>(null);
@@ -21,7 +20,7 @@ const Login = () => {
 
     useEffect(() => {
         if (status === "success") {
-            navigate(ROUTER_MAP.MULTIPLAYER, { replace: true });
+            navigate(ROUTER_MAP.notice, { replace: true });
         }
     });
 
@@ -40,8 +39,7 @@ const Login = () => {
     };
 
     return (
-        <Wrapper>
-            <Logo />
+        <>
             <Alert display={status === "error" ? "block" : "none"}>
                 로그인에 실패했습니다.
             </Alert>
@@ -67,21 +65,12 @@ const Login = () => {
                 <LoginButton onClick={onClickButton}>로그인</LoginButton>
                 <Suggestion>
                     <span>아직 계정이 없으신가요?</span>
-                    <Link to={ROUTER_MAP.REGISTER}>회원가입</Link>
+                    <Link to={ROUTER_MAP.account.register}>회원가입</Link>
                 </Suggestion>
             </Form>
-        </Wrapper>
+        </>
     );
 };
-
-const Wrapper = styled.section`
-    ${section}
-
-    position: relative;
-
-    width: 30%;
-    height: 60%;
-`;
 
 const Alert = styled.div<{ display: "block" | "none" }>`
     position: absolute;

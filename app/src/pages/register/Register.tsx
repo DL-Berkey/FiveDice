@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { MdEmail } from "react-icons/md";
@@ -9,8 +9,7 @@ import { IoMdCheckmarkCircle } from "react-icons/io";
 import useRegister from "@/hooks/useRegister";
 import { error, success } from "@/utils/toastWrapper";
 import { EMAIL_REGEX, PASSWORD_REGEX, ROUTER_MAP } from "@/constants";
-import Logo from "@/components/common/Logo";
-import { section, form, formRow, input, button } from "@/styles/common";
+import { form, formRow, input, button } from "@/styles/common";
 
 type InputType = "email" | "password" | "confirmPassword";
 
@@ -60,7 +59,7 @@ const Register = () => {
     const navigate = useNavigate();
 
     // 회원가입 처리를 위한 커스텀 훅
-    const [_, signUp] = useRegister();
+    const [status, signUp] = useRegister();
 
     // submit 함수
     const onSubmit = handleSubmit(async (data) => {
@@ -70,11 +69,11 @@ const Register = () => {
             success("이메일로 인증코드를 발송했습니다.");
 
             // TODO: 링크 변경 => 회원가입 완료, 링크 인증 유도 사이트로 보내기!
-            navigate("", {
-                state: {
-                    auth: true,
-                },
-            });
+            // navigate("", {
+            //     state: {
+            //         auth: true,
+            //     },
+            // });
         } else if (signUpResult.signUpStatus === "user already exists") {
             error("사용할 수 없는 이메일입니다.");
         } else {
@@ -83,90 +82,98 @@ const Register = () => {
     });
 
     return (
-        <Wrapper>
-            <Logo />
-            <Form onSubmit={onSubmit}>
-                <FormRow>
-                    <Label>
-                        {/* 사용 불가능한 이메일에 대한 텍스트 */}
-                        {errors.email && VALIDATION_TEXT_MAP.email.notok}
+        <>
+            {status !== "success" ? (
+                <Form onSubmit={onSubmit}>
+                    <FormRow>
+                        <Label>
+                            {/* 사용 불가능한 이메일에 대한 텍스트 */}
+                            {errors.email && VALIDATION_TEXT_MAP.email.notok}
 
-                        {/* 사용 가능한 이메일에 대한 텍스트 */}
-                        {!errors.email &&
-                            emailValue !== "" &&
-                            VALIDATION_TEXT_MAP.email.ok}
-                    </Label>
-                    <MdEmail />
-                    <Input
-                        id="email"
-                        type="email"
-                        placeholder="이메일"
-                        $invalid={errors.email?.type === "pattern"}
-                        {...register("email", {
-                            required: true,
-                            pattern: EMAIL_REGEX,
-                        })}
-                    />
-                </FormRow>
-                <FormRow>
-                    <Label>
-                        {/* 사용 불가능한 비밀번호에 대한 텍스트 */}
-                        {errors.password &&
-                            errors.password.type === "pattern" &&
-                            VALIDATION_TEXT_MAP.password.notok}
+                            {/* 사용 가능한 이메일에 대한 텍스트 */}
+                            {!errors.email &&
+                                emailValue !== "" &&
+                                VALIDATION_TEXT_MAP.email.ok}
+                        </Label>
+                        <MdEmail />
+                        <Input
+                            id="email"
+                            type="email"
+                            placeholder="이메일"
+                            $invalid={errors.email?.type === "pattern"}
+                            {...register("email", {
+                                required: true,
+                                pattern: EMAIL_REGEX,
+                            })}
+                        />
+                    </FormRow>
+                    <FormRow>
+                        <Label>
+                            {/* 사용 불가능한 비밀번호에 대한 텍스트 */}
+                            {errors.password &&
+                                errors.password.type === "pattern" &&
+                                VALIDATION_TEXT_MAP.password.notok}
 
-                        {/* 사용 가능한 비밀번호에 대한 텍스트 */}
-                        {!errors.password &&
-                            passwordValue !== "" &&
-                            VALIDATION_TEXT_MAP.password.ok}
-                    </Label>
-                    <RiLockPasswordFill />
-                    <Input
-                        id="password"
-                        type="password"
-                        placeholder="비밀번호"
-                        {...register("password", {
-                            required: true,
-                            pattern: PASSWORD_REGEX,
-                        })}
-                        $invalid={errors.password?.type === "pattern"}
-                    />
-                </FormRow>
-                <FormRow>
-                    <Label>
-                        {/* 비밀번호와 불일치에 대한 텍스트 */}
-                        {errors.confirmPassword &&
-                            errors.confirmPassword.type === "validate" &&
-                            VALIDATION_TEXT_MAP.confirmPassword.notok}
+                            {/* 사용 가능한 비밀번호에 대한 텍스트 */}
+                            {!errors.password &&
+                                passwordValue !== "" &&
+                                VALIDATION_TEXT_MAP.password.ok}
+                        </Label>
+                        <RiLockPasswordFill />
+                        <Input
+                            id="password"
+                            type="password"
+                            placeholder="비밀번호"
+                            {...register("password", {
+                                required: true,
+                                pattern: PASSWORD_REGEX,
+                            })}
+                            $invalid={errors.password?.type === "pattern"}
+                        />
+                    </FormRow>
+                    <FormRow>
+                        <Label>
+                            {/* 비밀번호와 불일치에 대한 텍스트 */}
+                            {errors.confirmPassword &&
+                                errors.confirmPassword.type === "validate" &&
+                                VALIDATION_TEXT_MAP.confirmPassword.notok}
 
-                        {/* 비밀번호와 일치에 대한 텍스트 */}
-                        {!errors.confirmPassword &&
-                            confirmPasswordValue !== "" &&
-                            VALIDATION_TEXT_MAP.confirmPassword.ok}
-                    </Label>
-                    <IoMdCheckmarkCircle />
-                    <Input
-                        id="confirmPassword"
-                        type="password"
-                        placeholder="비밀번호 확인"
-                        {...register("confirmPassword", {
-                            required: true,
-                            validate: (value) => value === passwordValue,
-                        })}
-                        $invalid={errors.confirmPassword?.type === "validate"}
-                    />
-                </FormRow>
-                <SendButton disabled={!isValid}>인증코드 발송</SendButton>
-            </Form>
-        </Wrapper>
+                            {/* 비밀번호와 일치에 대한 텍스트 */}
+                            {!errors.confirmPassword &&
+                                confirmPasswordValue !== "" &&
+                                VALIDATION_TEXT_MAP.confirmPassword.ok}
+                        </Label>
+                        <IoMdCheckmarkCircle />
+                        <Input
+                            id="confirmPassword"
+                            type="password"
+                            placeholder="비밀번호 확인"
+                            {...register("confirmPassword", {
+                                required: true,
+                                validate: (value) => value === passwordValue,
+                            })}
+                            $invalid={
+                                errors.confirmPassword?.type === "validate"
+                            }
+                        />
+                    </FormRow>
+                    <SendButton disabled={!isValid}>인증코드 발송</SendButton>
+                </Form>
+            ) : (
+                <>
+                    <h2>회원가입에 성공했습니다!</h2>
+                    <p>
+                        반드시 이메일로 전송된 인증 링크를 통해 계정 인증을
+                        해주세요.
+                    </p>
+                    <Link to={ROUTER_MAP.notice} replace>
+                        공지로 돌아가기
+                    </Link>
+                </>
+            )}
+        </>
     );
 };
-
-const Wrapper = styled.section`
-    ${section}
-
-    height: 60%;
-`;
 
 const Form = styled.form`
     ${form}

@@ -33,24 +33,24 @@ const Menu = () => {
                     <span>{userData?.nickname}</span>
                 </Account>
             ) : (
-                <Item to={ROUTER_MAP.LOGIN}>
+                <Item to={ROUTER_MAP.account.login}>
                     <BsPerson />
                     <span>로그인</span>
                 </Item>
             )}
-            <Item to={ROUTER_MAP.NOTICE}>
+            <Item to={ROUTER_MAP.notice}>
                 <BsMegaphone />
                 <span>공지</span>
             </Item>
-            <Item to={ROUTER_MAP.RANKING}>
+            <Item to={ROUTER_MAP.ranking}>
                 <BsTrophy />
                 <span>랭킹</span>
             </Item>
-            <Item to={ROUTER_MAP.MULTIPLAYER}>
+            <Item to={ROUTER_MAP.gameplay}>
                 <BsDice5 />
                 <span>게임 플레이</span>
             </Item>
-            <Item to={ROUTER_MAP.RULE}>
+            <Item to={ROUTER_MAP.rule}>
                 <BsBook />
                 <span>하는 법</span>
             </Item>

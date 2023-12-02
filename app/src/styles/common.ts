@@ -36,23 +36,6 @@ export const menuItem = css`
     }
 `;
 
-export const section = css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2%;
-
-    width: 30%;
-
-    margin-bottom: 8%;
-    padding: 2% 0;
-
-    background: white;
-
-    box-shadow: var(--shadow);
-`;
-
 export const form = css`
     display: flex;
     flex-direction: column;
